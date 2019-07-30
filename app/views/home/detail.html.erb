@@ -1,0 +1,41 @@
+<div class="quick head">Projects</div>
+<div class="projects-detail">
+    <% @projects.each do |p| %>
+        <div id="experience" class="category <%= "selected" if @selected && p.id == @selected.id %>">
+            <h2 class="quick"><%= p.title %></h2>
+            <p class="intro"><%= p.intro %></p>
+            <div class="category-item">
+                <ul>
+                    <li><%= p.description %></li>
+                    <% if p.publicUrl != "" %>
+                        <li><%= link_to('View', p.publicUrl, class: "link")  %></li>
+                    <% end %>
+                    <% if p.publicUrl != "" %>
+                        <li><%= link_to('Admin Demo', p.adminUrl, class: "link")  %></li>
+                    <% end %>
+                    <% if p.publicUrl != "" %>
+                        <li><%= link_to('Github', p.gitUrl, class: "link")  %></li>
+                    <% end %>
+                    <% if p.main_image.attached? %>
+                        <li><%= image_tag(p.main_image, class: "project-image") %></li>
+                    <% end %>
+                    <li>
+                        <% for i in 0...p.teches.count %>
+                            <% if i < p.teches.count-1 %>
+                                <%= "#{p.teches[i].name}," %>
+                            <% else %>
+                                <%= p.teches[i].name %>
+                            <% end %>
+                        <% end %>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    <% end %>
+    <div class="view-project-image">
+        <div class="image-close"><span class="close-x">X</span></div>
+        <div class="image-object-box">
+            <div class="image-obj"></div>
+        </div>
+    </div>
+</div>
