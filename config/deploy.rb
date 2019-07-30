@@ -3,8 +3,8 @@ lock "~> 3.11.0"
 
 set :application, "peter_koruga"
 set :repo_url, "https://github.com/petek157/peter.git"
-set :git_http_username, Rails.application.credentials.dig(:github, :user)
-set :git_http_password, Rails.application.credentials.dig(:github, :pass)
+# set :git_http_username, Rails.application.credentials.dig(:github, :user)
+# set :git_http_password, Rails.application.credentials.dig(:github, :pass)
 
 
 
