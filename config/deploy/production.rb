@@ -41,11 +41,11 @@ server 'ec2-18-235-63-60.compute-1.amazonaws.com', user: 'deploy', roles: %w{app
 #
 # Global options
 # --------------
-#  set :ssh_options, {
-#    keys: %w(/home/rlisowski/.ssh/id_rsa),
-#    forward_agent: false,
-#    auth_methods: %w(password)
-#  }
+set :ssh_options, {
+    keys: %w(/Users/peterkoruga/Documents/AWS/Keys/rails_deploy.pem),
+    forward_agent: true,
+    auth_methods: %w(publickey)
+  }
 #
 # The server-based syntax can be used to override options:
 # ------------------------------------
