@@ -25,6 +25,7 @@ test:
   database: peter_test
 
 production:
-  database: peter_production
-  username: <%= Rails.application.credentials.dig(:db, :pro_id) %> #not setup yet
-  password: <%= Rails.application.credentials.dig(:db, :pro_pass) %>
+  url: <%= Rails.application.credentials.dig(:db, :pro_url) %>
+  # database: peter_production
+  # username: <%= Rails.application.credentials.dig(:db, :pro_id) %> #not setup yet
+  # password: <%= Rails.application.credentials.dig(:db, :pro_pass) %>
