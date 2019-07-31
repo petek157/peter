@@ -25,7 +25,6 @@ test:
   database: peter_test
 
 production:
-  <<: *default
   database: peter_production
-  username: peter #not setup yet
-  password: <%= ENV['PETER_DATABASE_PASSWORD'] %>
+  username: <%= Rails.application.credentials.dig(:db, :pro_id) %> #not setup yet
+  password: <%= Rails.application.credentials.dig(:db, :pro_pass) %>
