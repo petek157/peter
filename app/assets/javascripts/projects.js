@@ -127,7 +127,7 @@ $(document).on("turbolinks:load", function() {
         });
     });
 
-    var stripe = Stripe('pk_test_12TFpUfmsd3Z6lrZnMkfAEa600N8beWnOO');
+    var stripe = Stripe('pk_live_jHOEm20gdpYlMWBt9AnK1HxH00qZ7lAAn5');
     var elements = stripe.elements();
 
     // Custom styling can be passed to options when creating an Element.

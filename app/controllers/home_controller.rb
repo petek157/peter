@@ -33,7 +33,7 @@ class HomeController < ApplicationController
 
   def donate
 
-    Stripe.api_key = Rails.application.credentials.dig(:stripe, :sand_sec_key)
+    Stripe.api_key = Rails.application.credentials.dig(:stripe, :live_sec_key)
 
     token = params[:stripeToken]
     first = params[:firstname]
