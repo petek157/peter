@@ -1,46 +1,46 @@
 <h1>Create Project</h1>
 <br />
-<%= form_for(@project) do |f| %>
-    
-    <table summary="Project form fields">
-        <tr>
-            <th>Title</th>
-            <td><%= f.text_field(:title) %></td>
-        </tr>
-        <tr>
-            <th>Intro</th>
-            <td><%= f.text_field(:intro) %></td>
-        </tr>
-        <tr>
-            <th>Description</th>
-            <td><%= f.text_area(:description) %></td>
-        </tr>
-        <tr>
-            <th>Tech</th>
-            <td><%= f.collection_check_boxes( :tech_ids, Tech.all, :id, :name) %></td>
-        </tr>
-        <tr>
-            <th>Public URL</th>
-            <td><%= f.text_field(:publicUrl) %></td>
-        </tr>
-        <tr>
-            <th>Admin URL</th>
-            <td><%= f.text_field(:adminUrl) %></td>
-        </tr>
-        <tr>
-            <th>Github URL</th>
-            <td><%= f.text_field(:gitUrl) %></td>
-        </tr>
-        <tr>
-            <th>Main Image</th>
-            <td><%= f.file_field(:main_image) %></td>
-        </tr>
-        <tr>
-            <th>Other Images</th>
-            <td><%= f.file_field(:image, multiple: true ) %></td>
-        </tr>
-    </table>
-    <div class="form-buttons">
-        <%= f.submit("Create Project") %>
+
+<div class='admin-project'>
+        <%= form_for(@project) do |f| %>
+            <%= hidden_field_tag(:from, @from, :readonly => true) %>
+
+            <div class="project-form-fields">
+                <%= content_tag(:div, f.text_field(:title, class: ["form-input", "form-title"], placeholder: "Title"), class: "form-item") %>
+                <%= content_tag(:div, f.text_field(:intro, class: ["form-input", "form-intro"], placeholder: "Short Intro"), class: "form-item") %>
+                <%= content_tag(:div, f.text_area(:description, class: ["form-input", "form-description"], placeholder: "Full Description"), class: "form-item") %>
+                <%= content_tag(:div, f.collection_check_boxes( :tech_ids, Tech.all, :id, :name, class: ["form-input", "form-description"]), class: ["form-tech", "form-item"]) %>
+                <%= content_tag(:div, f.text_field(:publicUrl, class: ["form-input", "form-public"], placeholder: "Public URL"), class: "form-item") %>
+                <%= content_tag(:div, f.text_field(:adminUrl, class: ["form-input", "form-admin"], placeholder: "Admin URL"), class: "form-item") %>
+                <%= content_tag(:div, f.text_field(:gitUrl, class: ["form-input", "form-git"], placeholder: "Github URL"), class: "form-item") %>
+                <div class="form-item form-main image">
+
+                </div>
+                <div class="form-item form-image image">
+                    <div class="form-image-con">
+                        <div class="form-image-label">Main Image</div>
+                        <div class="form-image-field"><%= f.file_field(:main_image) %></div>
+                    </div>
+                    <div class="form-main-image">
+                        <% if @project.main_image.attached? %>
+                            <%= image_tag(@project.main_image, class: "list-item-image")%>
+                        <% end %>
+                    </div>
+                </div>
+                <div class="form-item form-image image">
+                    <div class="form-image-con">
+                        <div class="form-image-label">Other Images</div>
+                        <div class="form-image-field"><%= f.file_field(:image, multiple: true ) %></div>
+                    </div>
+                    <div class="form-main-image">
+                        <% @project.image.each do |i| %>
+                            <%= content_tag(:div, image_tag(i, class: "list-item-image"), class: "list-item" )%>
+                        <% end %>
+                    </div>
+                </div>
+                <div class="form-buttons">
+                <%= f.submit("Save") %>
+            </div>
+            </div>
+        <% end %>     
     </div>
-<% end %>
