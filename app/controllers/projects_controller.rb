@@ -4,6 +4,9 @@ class ProjectsController < ApplicationController
 
   def index
     @projects = Project.all
+    if @projects.length == 0
+      redirect_to new_project_path()
+    end
     redirect_to project_path(@projects[0].id)
   end
 
