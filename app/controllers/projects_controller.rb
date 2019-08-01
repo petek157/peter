@@ -21,6 +21,7 @@ class ProjectsController < ApplicationController
 
   def new
     @project = Project.new()
+    @next_pos = Project.all().size + 1
   end
 
   def create

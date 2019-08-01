@@ -5,6 +5,8 @@
     </div>
     <div class="project-list">
         <div class="admin-menu-title">Projects</div>
+        <%= content_tag(:div, link_to("+ New Project", new_project_path()), class: "project-title") %>
+        <%=  %>
         <% @allProjects.each do |project| %>
             <% if project.id == @project.id%>
                 <div class='project-title selected'><%= link_to(project.title, project_path(project.id)) %></div>
