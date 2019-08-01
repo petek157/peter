@@ -1,7 +1,7 @@
 <div class="quick head">Projects</div>
 <div class="projects-detail">
     <% @projects.each do |p| %>
-        <div id="experience" class="category <%= "selected" if @selected && p.id == @selected.id %>">
+        <div id="experience" class="category <%= "selectedProject" if @selected && p.id == @selected.id %>">
             <h2 class="quick"><%= p.title %></h2>
             <p class="intro"><%= p.intro %></p>
             <div class="category-item">

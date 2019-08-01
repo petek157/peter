@@ -20,9 +20,9 @@ $(document).on("turbolinks:load", function() {
         window.location.href = "/details?id=" + $(this).data("item");
     });
 
-    if ($(".selected").length > 0) {
+    if ($(".selectedProject").length > 0) {
         $('html, body').animate({
-            scrollTop: $(".selected").offset().top
+            scrollTop: $(".selectedProject").offset().top
         }, 2000);
     }
 
