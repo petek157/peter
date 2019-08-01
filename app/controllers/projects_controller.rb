@@ -14,7 +14,7 @@ class ProjectsController < ApplicationController
 
   def show
     @user = User.find(session[:user_id]) if session[:user_id]
-    @allProjects = Project.all
+    @allProjects = Project.all().order('position ASC')
     @project = Project.find(params[:id])
     @images = @project.image
   end
