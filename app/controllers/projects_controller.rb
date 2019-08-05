@@ -28,7 +28,7 @@ class ProjectsController < ApplicationController
     project = Project.create!(project_params)
 
     flash[:notice] = "#{project.title} was created successfully."
-    redirect_to(projects_path())
+    redirect_to(project_path(project))
 
   end
 
