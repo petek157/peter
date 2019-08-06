@@ -1,6 +1,11 @@
 class HomeController < ApplicationController
   def index
     @projects = Project.all().order('position ASC')
+    puts("******************************************************")
+    puts(" ")
+    puts("******************************************************")
+    puts(request.remote_ip)
+    puts("******************************************************")
   end
 
   def resume

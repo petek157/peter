@@ -28,7 +28,7 @@
                 <div class="category-item" data-item="<%= p.id%>">
                     <h3 class="quick"><%= p.title %></h3>
                     <ul>
-                        <li class="intro"><%= p.intro %></li>
+                        <li class="intro"><%= p.intro if p.intro != "" %></li>
                         <li class="intro">
                             <% for i in 0...p.teches.count %>
                                 <% if i < p.teches.count-1 %>

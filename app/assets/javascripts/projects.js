@@ -1,6 +1,6 @@
 
 $(document).on("turbolinks:load", function() {
-    
+
     $(".projects-detail .project-image").click(function() {
         console.log("Image");
         console.log($(this).attr("src"));
@@ -11,6 +11,10 @@ $(document).on("turbolinks:load", function() {
     });
 
     $(".image-close").click(function() {
+        $('.view-project-image').css({'display': 'none'});
+    });
+
+    $(".view-project-image").click(function() {
         $('.view-project-image').css({'display': 'none'});
     });
 

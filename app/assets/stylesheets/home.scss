@@ -334,7 +334,8 @@ body {
 }
 
 .project-image {
-    width: 100%;
+    max-width: 100%;
+    max-height: 315px;
 }
 
 .footer {
@@ -342,6 +343,31 @@ body {
     text-align: center;
 }
 
+.view-project-image {
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background-color: rgba(255,255,255, .7);
+    
+    .close-x {
+        cursor: pointer;
+    }
+
+    img {
+        display: block;
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .image-object-box {
+        padding: 5px;
+        background-color: $yellow;
+        border-radius: 5px;
+    }
+}
 
 @media only screen and (min-width: 768px) {
     body {
@@ -390,6 +416,7 @@ body {
         top: 80px;
         left: 100px;
         right: 100px;
+        bottom: 80px;
         background-color: white;
         padding: 20px;
         border-radius: 10px;
@@ -402,14 +429,24 @@ body {
         img {
             display: block;
             max-width: 75%;
+            max-height: 100%;
             margin-left: auto;
             margin-right: auto;
         }
 
         .image-object-box {
+            position: absolute;
+            top: 40px;
+            left: 20px;
+            right: 20px;
+            bottom: 200px;
             padding: 5px;
             background-color: $yellow;
             border-radius: 5px;
+        }
+
+        .image-obj {
+            height: 100%;
         }
     }
 

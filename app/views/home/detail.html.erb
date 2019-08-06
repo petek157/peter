@@ -10,10 +10,10 @@
                     <% if p.publicUrl != "" %>
                         <li><%= link_to('View', p.publicUrl, class: "link")  %></li>
                     <% end %>
-                    <% if p.publicUrl != "" %>
+                    <% if p.adminUrl != "" %>
                         <li><%= link_to('Admin Demo', p.adminUrl, class: "link")  %></li>
                     <% end %>
-                    <% if p.publicUrl != "" %>
+                    <% if p.gitUrl != "" %>
                         <li><%= link_to('Github', p.gitUrl, class: "link")  %></li>
                     <% end %>
                     <% if p.main_image.attached? %>
