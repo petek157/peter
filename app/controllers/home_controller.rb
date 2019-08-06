@@ -11,6 +11,7 @@ class HomeController < ApplicationController
           template: 'home/print.html.erb',
           layout: 'resume.html.erb',
           page_size: 'letter',
+          show_as_html: params.key?('debug'),
           margin: {top: 15,
                   bottom: 7,
                   left: 10,
