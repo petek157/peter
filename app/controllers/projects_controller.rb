@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
   before_action :confirm_logged_in, :only => [:create, :update, :destroy]
 
   def index
-    @projects = Project.all
+    @projects = Project.all().order('position ASC')
     if @projects.length == 0
       redirect_to new_project_path()
     else

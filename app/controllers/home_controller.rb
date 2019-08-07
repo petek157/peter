@@ -28,7 +28,7 @@ class HomeController < ApplicationController
   end
 
   def detail
-    @projects = Project.all
+    @projects = Project.all().order('position ASC')
     if params[:id]
       @selected = Project.find(params[:id])
     end
