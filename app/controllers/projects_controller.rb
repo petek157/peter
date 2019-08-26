@@ -72,7 +72,7 @@ class ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:title, :description, :publicUrl, :adminUrl, :gitUrl, :intro, :main_image, :position, image: [], :tech_ids => [])
+    params.require(:project).permit(:title, :description, :publicUrl, :adminUrl, :gitUrl, :intro, :main_image, :active, :position, image: [], :tech_ids => [])
   end
 
   def confirm_logged_in

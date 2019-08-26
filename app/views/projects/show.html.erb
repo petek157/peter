@@ -24,6 +24,13 @@
                 <%= content_tag(:div, f.text_field(:intro, class: ["form-input", "form-intro"], placeholder: "Short Intro"), class: "form-item") %>
                 <%= content_tag(:div, f.text_area(:description, class: ["form-input", "form-description"], placeholder: "Full Description"), class: "form-item") %>
                 <%= content_tag(:div, f.collection_check_boxes( :tech_ids, Tech.all, :id, :name, class: ["form-input", "form-description"]), class: ["form-tech", "form-item"]) %>
+                <div >
+                    Active?
+                    <%= f.radio_button(:active, true) %>
+                    <%= label_tag(:active, "Yes") %>
+                    <%= f.radio_button(:active, false) %>
+                    <%= label_tag(:active, "No") %>
+                </div>
                 <%= content_tag(:div, f.text_field(:publicUrl, class: ["form-input", "form-public"], placeholder: "Public URL"), class: "form-item") %>
                 <%= content_tag(:div, f.text_field(:adminUrl, class: ["form-input", "form-admin"], placeholder: "Admin URL"), class: "form-item") %>
                 <%= content_tag(:div, f.text_field(:gitUrl, class: ["form-input", "form-git"], placeholder: "Github URL"), class: "form-item") %>

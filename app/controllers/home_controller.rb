@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-    @projects = Project.all().order('position ASC')
+    @projects = Project.where(active: true).order('position ASC')
     puts("******************************************************")
     puts(" ")
     puts("******************************************************")
@@ -28,7 +28,7 @@ class HomeController < ApplicationController
   end
 
   def detail
-    @projects = Project.all().order('position ASC')
+    @projects = Project.where(active: true).order('position ASC')
     if params[:id]
       @selected = Project.find(params[:id])
     end
