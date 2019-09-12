@@ -17,7 +17,7 @@
                         <li><%= link_to('Github', p.gitUrl, class: "link")  %></li>
                     <% end %>
                     <% if p.main_image.attached? %>
-                        <li><%= image_tag(p.main_image, class: "project-image") %></li>
+                        <li><%= image_tag(p.main_image, alt: p.main_alt, class: "project-image") %></li>
                     <% end %>
                     <li>
                         <% for i in 0...p.teches.count %>

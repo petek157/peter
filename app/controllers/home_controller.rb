@@ -1,6 +1,10 @@
 class HomeController < ApplicationController
   def index
     @projects = Project.where(active: true).order('position ASC')
+
+    @des = "Hello, My name is Peter Koruga. I am a self taught developer actively looking to continue my software development career."
+    @title = "Peter Koruga | Welcome!"
+
     puts("******************************************************")
     puts(" ")
     puts("******************************************************")
@@ -25,6 +29,8 @@ class HomeController < ApplicationController
                     outline_depth: 2}
         end
      end
+     @des = "This is the resume that Im hoping will appropriately dispay my past projects, current abiities and willingness to learn in the future."
+     @title = "Peter Koruga | Resume"
   end
 
   def detail
@@ -32,6 +38,8 @@ class HomeController < ApplicationController
     if params[:id]
       @selected = Project.find(params[:id])
     end
+    @des = "Here are a few of my, Peter Koruga's, projects that are visible to the outside world. Some of the tech includes: HTML, CSS, Javascript, React, Rails, iOS and Python."
+    @title = "Peter Koruga | Projects"
   end
 
   def contact

@@ -1,6 +1,14 @@
 
 $(document).on("turbolinks:load", function() {
 
+    if (navigator.serviceWorker) {
+        navigator.serviceWorker.register('/service-worker.js', { scope: './' })
+          .then(function(reg) {
+            console.log('[Companion]', 'Service worker registered!');
+            console.log(reg);
+          });
+      }
+      
     $(".projects-detail .project-image").click(function() {
         console.log("Image");
         console.log($(this).attr("src"));

@@ -18,7 +18,6 @@ Rails.application.routes.draw do
   get 'home/resume/print', :to => 'home#print'
   get 'home/detail'
 
-
   resources :projects do
     member do
       get :delete

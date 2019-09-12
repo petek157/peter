@@ -1,13 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Peter Koruga</title>
+    <title><%= @title %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="<%= @des %>">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="https://js.stripe.com/v3/"></script>
+    <link rel="manifest" href="/manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
   </head>
 
   <body>
@@ -25,7 +28,6 @@
             <%= flash[:alert] %>
         </div>
     <% end %>
-    <!--<div class="stripe"><img src="/donate.png"/></div>-->
     
     <div class="nav">
         
@@ -39,13 +41,13 @@
                 <li class="stripe">Donate to 4 the Kids</li>
             </ul>
         </div>
-        <!--<div class="stripe">Donate to 4 the Kids</div>-->
+
         <div class="nav-contact">
             <ul>
-              <li class="contact"><%= link_to(fa_icon("linkedin"), "http://www.linkedin.com/in/peter-koruga") %></li>
-              <li class="contact"><%= link_to(fa_icon("github"), "https://github.com/petek157") %></li>
-              <li class="contact"><%= link_to(fa_icon("stack-overflow"), "https://stackoverflow.com/story/peter-koruga") %></li>
-              <li class="contact"><%= link_to(fa_icon("envelope"), "mailto:peterk3@koruga.com?Subject=Portfolio%20Interest") %></li>
+              <li class="contact"><%= link_to(fa_icon("linkedin"), "http://www.linkedin.com/in/peter-koruga", aria: {label: "Peter Koruga's LinkedIn Page"}) %></li>
+              <li class="contact"><%= link_to(fa_icon("github"), "https://github.com/petek157", aria: {label: "Peter Koruga's Github Page"}) %></li>
+              <li class="contact"><%= link_to(fa_icon("stack-overflow"), "https://stackoverflow.com/story/peter-koruga", aria: {label: "Peter Koruga's Stack Overflow Page"}) %></li>
+              <li class="contact"><%= link_to(fa_icon("envelope"), "mailto:peterk3@koruga.com?Subject=Portfolio%20Interest", aria: {label: "Peter Koruga's Email contact"}) %></li>
               <li class="contact">
                 <div class="contact-box">
                   <div class="contact-icon twilio"><%= fa_icon("phone") %></div>
@@ -66,7 +68,7 @@
           <div class="stripe-note">To be clear, this is live. Its NOT a demo.<br />But does demonstrate my use of Stripe and Twilio API.</div>
           <div class="donate-intro">
             <p>I, Peter, am a founding member of WUP Rise / 4 the Kids. We are a U.S. Non-profit organization that raises money to support the youth of the Western Upper Peninsula of Michigan. We are primarily interested
-            in helping in the areas of technology education, fitness and athletics. Information about our most recent project can be found <a class="stripe-link" target="_blank"href='https://www.facebook.com/4thekidswakefield'>here</a>.</p>
+            in helping in the areas of technology education, fitness and athletics. Information about our most recent project can be found on the <a class="stripe-link" target="_blank" rel="noreferrer" href='https://www.facebook.com/4thekidswakefield'>4 the Kids Facebook page</a>.</p>
             <p>If you have any questions please feel free to contact me anytime.</p>
             <p>To donate, please fill out the form below.</p>
           </div>

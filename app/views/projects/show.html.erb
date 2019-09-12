@@ -45,9 +45,10 @@
                     </div>
                     <div class="form-main-image">
                         <% if @project.main_image.attached? %>
-                            <%= image_tag(@project.main_image, class: "list-item-image")%>
+                            <%= image_tag(@project.main_image, alt: @project.main_alt, class: "list-item-image")%>
                         <% end %>
                     </div>
+                    <%= content_tag(:div, f.text_field(:main_alt, class: ["form-input", "form-title"], placeholder: "Main Image Alt Text"), class: "form-item") %>
                 </div>
                 <div class="form-item form-image image">
                     <div class="form-image-con">

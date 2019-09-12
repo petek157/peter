@@ -69,6 +69,8 @@ gem "aws-sdk-s3", require: false
 gem "font-awesome-rails"
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 
+gem 'serviceworker-rails'
+
 gem 'sendgrid-ruby'
 
 gem 'wicked_pdf'
