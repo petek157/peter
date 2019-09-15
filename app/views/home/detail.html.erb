@@ -1,41 +1,49 @@
-<div class="quick head">Projects</div>
-<div class="projects-detail">
-    <% @projects.each do |p| %>
-        <div id="experience" class="category <%= "selectedProject" if @selected && p.id == @selected.id %>">
-            <h2 class="quick"><%= p.title %></h2>
-            <p class="quick"><%= p.intro %></p>
-            <div class="category-item">
-                <ul>
-                    <li><%= p.description %></li>
-                    <% if p.publicUrl != "" %>
-                        <li><%= link_to('View', p.publicUrl, class: "link")  %></li>
-                    <% end %>
-                    <% if p.adminUrl != "" %>
-                        <li><%= link_to('Admin Demo', p.adminUrl, class: "link")  %></li>
-                    <% end %>
-                    <% if p.gitUrl != "" %>
-                        <li><%= link_to('Github', p.gitUrl, class: "link")  %></li>
-                    <% end %>
-                    <% if p.main_image.attached? %>
-                        <li><%= image_tag(p.main_image, alt: p.main_alt, class: "project-image") %></li>
-                    <% end %>
-                    <li>
-                        <% for i in 0...p.teches.count %>
-                            <% if i < p.teches.count-1 %>
-                                <%= "#{p.teches[i].name}," %>
-                            <% else %>
-                                <%= p.teches[i].name %>
-                            <% end %>
-                        <% end %>
-                    </li>
-                </ul>
-            </div>
+<div class="project-box">
+    <div class="project-menu">
+    <ul>
+        <% @projects.each do |p| %>    
+            <li>
+            <% if p.id == @project.id %>
+                <%= link_to(p.title, details_path(pid: p.id), class: "selected") %>
+            <% else %>
+                <%= link_to(p.title, details_path(pid: p.id)) %>
+            <% end %>
+            </li>
+        <% end %>
+        </ul>
+    </div>
+    <div class="project-details">
+        <div class="title">
+            <%= @project.title %>
         </div>
-    <% end %>
-    <div class="view-project-image">
-        <div class="image-close"><span class="close-x">X</span></div>
-        <div class="image-object-box">
-            <div class="image-obj"></div>
-        </div>
+        <% if @project.publicUrl != "" %>
+            <%= link_to('View', @project.publicUrl, class: "link") %>
+        <% end %>
+        <% if @project.adminUrl != "" %>
+            <%= link_to('Admin Demo', @project.adminUrl, class: "link") %>
+        <% end %>
+        <% if @project.gitUrl != "" %>
+            <%= link_to('Github', @project.gitUrl, class: "link") %>
+        <% end %>
+        <p class="intro"><%= @project.intro %></p>
+        <p class="description"><%= @project.description %></p>
+        <p class="tech">
+            <% for i in 0...@project.teches.count %>
+                <% if i < @project.teches.count-1 %>
+                    <%= "#{@project.teches[i].name}," %>
+                <% else %>
+                    <%= @project.teches[i].name %>
+                <% end %>
+            <% end %>
+        </p>
+        <% if @project.main_image.attached? %>
+            <%= image_tag(@project.main_image, alt: @project.main_alt, class: "project-image") %>
+        <% end %>
+    </div>
+</div>
+<div class="view-project-image">
+    <div class="image-close"><span class="close-x">X</span></div>
+    <div class="image-object-box">
+        <div class="image-obj"></div>
     </div>
 </div>

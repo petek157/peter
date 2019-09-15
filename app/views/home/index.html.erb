@@ -1,49 +1,43 @@
-<div class="contacts">
+<%# <div class="contacts">
     <div class="contact"><a href="http://www.linkedin.com/in/peter-koruga">LinkedIn</a></div>
     <div class="contact"><a href="https://github.com/petek157">Github</a></div>
     <div class="contact"><a href="https://stackoverflow.com/story/peter-koruga">Stackoverflow</a></div>
     <div class="contact"><a href="tel:+1-906-364-8851">Call <span class="twilio-power">Powered by Twilio</span></a></div>
     <div class="contact"><a href="mailto:peterk3@koruga.com?Subject=Portfolio%20Interest">Email</a></div>
+</div> %>
+<div class="headline">
+    <div class="headline-title">Making is my Passion!</div>
+    <div class="headline-spacer"><img src="/images/icons/icon_50_white.png" /></div>
+    <div class="headline-info">
+        The opportunity to make things for a living is what I have been preparing to do for the last 10 years.  
+        Very few things bring me more joy than finding a need or reason to start and complete a project. Being wired to constantly want to improve 
+        by reading, watching, listening or mentored guidence allows me to be versatile to any team. Logic and common sense are my north star.
+    </div>
 </div>
-<div class="quick head">Welcome</div>
-<div class="home">
-    <div id="home-quick" class="category">
-        <h2 class="quick">Quick Info</h2>
-        <div class="category-item">
-            <ul>
-                <li>Uniquely experienced in business for a developer<br />(Employee, Manager, Owner)</li>
-                <li>11 and counting LIVE projects</li>
-                <li>Numerous more in house projects used in private businesses</li> 
-                <li>HTML, CSS, Javascript, jQuery, Swift, Objective-C, AWS, PHP, Ruby, Rails, React, C++ (Wiring), Python, SQL</li>
-                <li>16 Certificates from Lynda/LinkedIn Learning</li>
-                <li>WILL NEVER STOP LEARNING</li>
-                <li>Bachelors of Science NMU 2005</li>
-            </ul>
+
+<div class="quick-items">
+    <div class="quick-item">
+        <div class="title">
+            Skills
+        </div>
+        <div class="info">
+            HTML, CSS, Javascript, jQuery, Swift, Objective-C, AWS, PHP, Ruby, Rails, React, C++ (Wiring), Python, SQL
         </div>
     </div>
-    <div id="home-projects" class="category">
-        <h2 class="quick">Projects</h2>
-        <div class="projects">
-            <% @projects.each do |p| %>
-                <div class="category-item" data-item="<%= p.id%>">
-                    <h3 class="quick"><%= p.title %></h3>
-                    <ul>
-                        <li class="intro"><%= p.intro if p.intro != "" %></li>
-                        <li class="intro">
-                            <% for i in 0...p.teches.count %>
-                                <% if i < p.teches.count-1 %>
-                                    <%= "#{p.teches[i].name}," %>
-                                <% else %>
-                                    <%= p.teches[i].name %>
-                                <% end %>
-                            <% end %>
-                        </li>
-                        <% if p.main_image.attached? %>
-                            <li class="intro"><%= image_tag(p.main_image, alt: p.main_alt, class: "project-image") %></li>
-                        <% end %>
-                    </ul>
-                </div>
-            <% end %>
+    <div class="quick-item">
+        <div class="title">
+            Education
+        </div>
+        <div class="info">
+            Bachelors of Science NMU 2005
+        </div>
     </div>
+    <div class="quick-item">
+        <div class="title">
+            ABC
+        </div>
+        <div class="info">
+            <b>A</b>lways <b>B</b>e <b>C</b>reating
+        </div>
     </div>
 </div>

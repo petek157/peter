@@ -35,8 +35,10 @@ class HomeController < ApplicationController
 
   def detail
     @projects = Project.where(active: true).order('position ASC')
-    if params[:id]
-      @selected = Project.find(params[:id])
+    if params[:pid]
+      @project = Project.find(params[:pid])
+    else
+      @project = @projects.first
     end
     @des = "Here are a few of my, Peter Koruga's, projects that are visible to the outside world. Some of the tech includes: HTML, CSS, Javascript, React, Rails, iOS and Python."
     @title = "Peter Koruga | Projects"

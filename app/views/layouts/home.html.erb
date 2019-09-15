@@ -36,14 +36,6 @@
         <div class="nav-left">
             <div class="name"><%= link_to('Peter Koruga', root_path()) %></div>
         </div>
-        <div class="nav-right">
-            <ul>
-                <li><%= link_to('Projects', details_path()) %></li>
-                <li><%= link_to('Resume', resume_path()) %></li>
-                <li class="stripe">Donate to 4 the Kids</li>
-            </ul>
-        </div>
-
         <div class="nav-contact">
             <ul>
               <li class="contact"><%= link_to(fa_icon("linkedin"), "http://www.linkedin.com/in/peter-koruga", aria: {label: "Peter Koruga's LinkedIn Page"}) %></li>
@@ -55,9 +47,16 @@
                   <div class="contact-icon twilio"><%= fa_icon("phone") %></div>
                   <div class="contact-under twilio">Twilio</div>
               </li>
-              <!--<li class="contact">(906)662-4859</li>-->
             </ul>
         </div>
+        <div class="nav-right">
+            <ul>
+                <li><%= link_to('Projects', details_path()) %></li>
+                <li><%= link_to('Resume', resume_path()) %></li>
+                <li class="stripe1">4 the Kids</li>
+            </ul>
+        </div>
+
         <div class="twilio-box">
           <span class="twilio-close"><%= fa_icon("times") %></span>
           <span class="twilio-number">(906) 662-4859</span>
@@ -115,7 +114,6 @@
     </div>
     <%= yield %>
     <footer>
-      <div class="footer">Admittedly not a designer. But theme is based on my love of sunrise and sunset.</div>
-    </footer>
+      
   </body>
 </html>

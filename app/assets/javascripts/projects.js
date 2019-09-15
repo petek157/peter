@@ -1,7 +1,7 @@
 
 $(document).on("turbolinks:load", function() {
 
-    $(".projects-detail .project-image").click(function() {
+    $(".project-image").click(function() {
         console.log("Image");
         console.log($(this).attr("src"));
 
@@ -111,6 +111,15 @@ $(document).on("turbolinks:load", function() {
         
         
     }); 
+
+    $('.stripe1').click(function() {
+        $('.stripe-box').css({display: 'block'});
+        $( ".stripe-box" ).animate(
+            sOpen, 750, "linear", function() {
+            // Animation complete.
+            sIsOpen = true;
+        });
+    });
 
     $('.stripe').click(function() {
         $('.stripe-box').css({display: 'block'});

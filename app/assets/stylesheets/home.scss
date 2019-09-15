@@ -10,7 +10,6 @@ $blue: #152852;
 $dark-blue: #08183A;
 
 //Backend
-
 body.admin {
     background-color: #e3e8ee;
 }
@@ -109,10 +108,17 @@ body.admin {
 
 //Backend
 
+html {
+    //background: rgba(0, 0, 0, 0) url(/images/background-blue-winter2.jpg) no-repeat fixed center top / cover;
+    background-image: url(/images/background.svg);
+    background-size: cover;
+    background-attachment: fixed;
+}
+
 body {
     //font-family: "Trebuchet MS", Helvetica, sans-serif;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", "Ubuntu", sans-serif;
-    background-color: $dark-blue;
+    background-color: transparent;
 }
 
 .note {
@@ -136,11 +142,11 @@ body {
 }
 
 .nav-contact {
-    display: none;
+    display: block;
 }
 
 .contacts {
-    display: block;
+    display: none;
 }
 
 .stripe {
@@ -216,21 +222,27 @@ body {
     }
     a {
         text-decoration: none;
-        color: white;
+        color: $blue;
+    }
+    .nav-contact {
+        ul {
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        }
     }
 
     ul {
         width: 100%;
         padding: 0px;
         display: grid;
-        grid-template-columns: 50% 50%;
+        grid-template-columns: 1fr 1fr 1fr;
     }
+
     li {
         display: inline-block;
         list-style-type: none;
         padding: 13px 0px 13px 0px;
         text-align: center;
-        background-color: $light-orange;
+        background-color: transparent;
         margin: 5px;
         border-radius: 5px;
         
@@ -257,6 +269,90 @@ body {
     }
 }
 
+.headline {
+    padding-top: 0px;
+}
+
+.headline-title {
+    text-align: center;
+    color: white;
+    font-size: 75px;
+}
+
+.headline-spacer {
+    text-align: center;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+.headline-info {
+    color: white;
+    font-style: italic;
+    text-align: center;
+}
+
+.quick-items {
+    display: block;
+    margin-top: 25px;
+}
+
+.quick-item {
+    text-align: center;
+    color: white;
+    .title {
+        padding: 10px;
+        font-size: 25px;
+    }
+
+    .info {
+        padding-bottom: 10px;
+    }
+}
+
+.project-box {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    margin-top: 25px;
+
+    .project-menu {
+        ul {
+            padding-inline-start: 0px;
+            margin-block-start: 0px;
+            margin-block-end: 0px;
+        }
+        
+        li {
+            list-style-type: none;
+            margin-bottom: 5px;
+        }
+
+        a {
+            text-decoration: none;
+            font-size: 15px;
+            color: $blue;
+            &.selected {
+                color: white;
+            }
+        }
+    }
+
+    .project-details {
+        .title {
+            color: white;
+            font-size: 30px;
+        }
+        .intro, .description, .tech {
+            color: $blue;
+        }
+    }
+
+}
+
+
+
+
+
+
 .quick {
     text-align: center;
     a {
@@ -275,7 +371,7 @@ body {
 }
 
 .category {
-    background-color: $light-orange;
+    background-color: transparent;
     padding: 5px;
     margin: 5px;
     border-radius: 5px;
@@ -396,6 +492,45 @@ body {
         display: none;
     }
 
+    .headline {
+        padding-top: 75px;
+    }
+
+    .headline-title {
+        font-size: 100px;
+    }
+
+    // .headline-spacer {
+    //     text-align: center;
+    //     padding-top: 25px;
+    //     padding-bottom: 25px;
+    // }
+
+    // .headline-info {
+    //     color: white;
+    //     font-style: italic;
+    //     text-align: center;
+    // }
+
+    .quick-items {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        column-gap: 15px;
+    }
+
+    // .quick-item {
+    //     text-align: center;
+    //     color: white;
+    //     .title {
+    //         padding: 10px;
+    //         font-size: 25px;
+    //     }
+
+    //     .info {
+    //         padding-bottom: 10px;
+    //     }
+    // }
+
     .projects {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -492,7 +627,7 @@ body {
         padding: 10px;
         border-radius: 5px;
         //top: 60px;
-        box-shadow: 10px 10px 10px $orange;
+        box-shadow: 10px 10px 10px $blue;
 
         table {
             width: 100%;
@@ -547,6 +682,7 @@ body {
             display: grid;
             grid-template-columns: 1fr;
             grid-template-rows: 1fr 1fr;
+            color: $blue;
 
             .contact-icon {
 
@@ -570,6 +706,11 @@ body {
 
         ul {
             margin-top: 0px;
+        }
+
+        li.stripe1 {
+            cursor: pointer;
+            color: $blue;
         }
 
         li.stripe {
@@ -601,7 +742,7 @@ body {
                 width: 100%;
                 padding: 0px;
                 display: grid;
-                grid-template-columns: 1fr 1fr;
+                grid-template-columns: 1fr 1fr 1fr;
             }
         }
         .nav-contact {
