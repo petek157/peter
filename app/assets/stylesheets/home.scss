@@ -271,6 +271,27 @@ body {
 
 .headline {
     padding-top: 0px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.slideCount {
+    text-align: center;
+    
+}
+
+.slIcon {
+    padding: 5px;
+    color: $yellow;
+    cursor: pointer;
+}
+
+.mobileHyphen {
+    display: block;
+}
+
+.marieLink {
+    color: white;
 }
 
 .headline-title {
@@ -347,11 +368,6 @@ body {
     }
 
 }
-
-
-
-
-
 
 .quick {
     text-align: center;
@@ -493,43 +509,23 @@ body {
     }
 
     .headline {
-        padding-top: 75px;
+        
+        height: 470px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center; 
     }
 
     .headline-title {
         font-size: 100px;
     }
 
-    // .headline-spacer {
-    //     text-align: center;
-    //     padding-top: 25px;
-    //     padding-bottom: 25px;
-    // }
-
-    // .headline-info {
-    //     color: white;
-    //     font-style: italic;
-    //     text-align: center;
-    // }
-
     .quick-items {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         column-gap: 15px;
     }
-
-    // .quick-item {
-    //     text-align: center;
-    //     color: white;
-    //     .title {
-    //         padding: 10px;
-    //         font-size: 25px;
-    //     }
-
-    //     .info {
-    //         padding-bottom: 10px;
-    //     }
-    // }
 
     .projects {
         display: grid;
@@ -544,6 +540,10 @@ body {
 
     .project-image {
         cursor: pointer;
+    }
+
+    .mobileHyphen {
+        display: none;
     }
 
     .view-project-image {
@@ -764,6 +764,30 @@ body {
             border-radius: 0px;
             color: white;
         }
+    }
+
+    .resume {
+        display: grid;
+        grid-template-columns: 30% 70%;
+        padding-top: 25px;
+    }
+
+    .resume-cat {
+        font-size: 20px;
+    }
+
+    .cat-item {
+        margin-bottom: 35px;
+    }
+
+    .cat-title {
+        font-size: 19px;
+        padding-bottom: 5px;
+    }
+
+    .intro {
+        font-size: 14px;
+        padding-left: 15px;
     }
 }
 

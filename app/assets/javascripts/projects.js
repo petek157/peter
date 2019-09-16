@@ -1,6 +1,65 @@
 
 $(document).on("turbolinks:load", function() {
 
+    var indexInfo = [
+        {
+            title: 'Everything is Figureout<span class=\"mobileHyphen\">-</span>able!',
+            info: 'Some things that you will never hear me say are "I cant do that" or "I dont know how". I borrowed the phrase Everything is Figureoutable from <a href="https://www.marieforleo.com/" class="marieLink" target="_blank">Marie Forleo</a> but the idea that there is nothing that I can\'t figure out how to do given sometime to work through it has been my mental montra for as long as I can remember.'
+        },
+        {
+            title: 'Making is my Passion!',
+            info: 'The opportunity to make things for a living is what I have been preparing to do for the last 10 years.  Very few things bring me more joy than finding a need or reason to start and complete a project. Being wired to constantly want to improve by reading, watching, listening or mentored guidence allows me to be versatile to any team. Logic and common sense are my north star.'
+        }
+    ]
+
+    var slideTimer = null;
+    var current = 0;
+    slide(current);
+    slideTimer = setInterval(function() {slide(current)}, 14000);
+    
+    function slide(c) {
+        $(".headline").fadeOut( "slow", function() {
+            $(".headline-title").html(indexInfo[c].title);
+            $(".headline-info").html(indexInfo[c].info);
+            if (c == 0) {
+                $(".c1").css("color", "#FFE373");
+                $(".c2").css("color", "white");
+            } else {
+                $(".c1").css("color", "white");
+                $(".c2").css("color", "#FFE373");
+            }
+            $(".headline").fadeIn( "slow");
+            if (c == indexInfo.length - 1) {
+                current = 0;
+            } else {
+                current += 1;
+            }
+        });
+    }
+
+    $(".headline").hover( function() {
+        clearInterval(slideTimer);
+    }, function() {
+        slide(current);
+        slideTimer = setInterval(function() {slide(current)}, 14000);
+    } )
+
+    $(".c1").click(function() {
+        clearInterval(slideTimer);
+        current = 0
+        slide(current);
+        slideTimer = setInterval(function() {slide(current)}, 14000);
+
+    });
+
+    $(".c2").click(function() {
+        clearInterval(slideTimer);
+        current = 1
+        slide(current);
+        slideTimer = setInterval(function() {slide(current)}, 14000);
+
+    });
+
     $(".project-image").click(function() {
         console.log("Image");
         console.log($(this).attr("src"));

@@ -1,82 +1,79 @@
-<div class="quick head"><%= link_to(fa_icon("file"), "/resume.pdf") %><span class="res-space">Resume</span></div>
 <div class="resume">
-    <div id="experience" class="category">
-        <h2 class="quick">Experience</h2>
-        <div class="category-item">
-            <h3>Indianhead Valley Condos Fullstack</h3>
-            <p class="intro">Online availability and booking on the front end and all of the RMS functionality in the back end. The app uses Parseplatform API and Server for data storage and user admin (currently refactoring to use AWS). It is capable of managing all aspects of a family owned lodging facility. Which includes creating, reading, updating and deleting guests, reservations, payments and other financial/bookkeeping/sales data. Payment processing via the Stripe API. Visual reservation calendar for 13 units.</p>
+
+    <div class="resume-cat">
+        <div class="quick">Experience</div>
+    </div>
+    <div class="cat-items">
+        <div class="cat-item">
+            <div class="cat-title">Indianhead Valley Condos Fullstack</div>
+            <div class="intro">Online availability and booking on the front end and all of the RMS functionality in the back end. The app uses Parseplatform API and Server for data storage and user admin (currently refactoring to use AWS). It is capable of managing all aspects of a family owned lodging facility. Which includes creating, reading, updating and deleting guests, reservations, payments and other financial/bookkeeping/sales data. Payment processing via the Stripe API. Visual reservation calendar for 13 units.</div>
         </div>
-        <div class="category-item">
-            <h3>Indianhead Valley Condos iOS Admin App</h3>
-            <p class="intro">All of the functionality of the back end of the website including Stripe payments.</p>
+        <div class="cat-item">
+            <div class="cat-title">Indianhead Valley Condos iOS Admin App</div>
+            <div class="intro">All of the functionality of the back end of the website including Stripe payments.</div>
         </div>
-        <div class="category-item">
-            <h3>iOS Apps</h3>
-            <ul>
-                <li>Crime Scene Evidence Marker (Tableview manipulation and Location Service)</li>
-                <li>Simple Schedule Viewer (EventKit)</li>
-                <li>Crime Scene Identifier Card </li>
-                <li>Blood Spatter Angle Calculator</li>
-                <li>Blood Spatter Angle Calculator Pro (CloudKit)</li>
-            </ul>
+        <div class="cat-item">
+            <div class="cat-title">Peter Koruga Portfolio</div>
+            <div class="intro">Rather than just writing what I did on different projects, I have tried to use some of those features directly in this site. Things like spinning up an EC2 instance with SSL to host this site and multiple other Rails applications. Connecting to S3 for Active Storage. Running the phone number through Twilio. Accepting donations for my Non-Profit WUP Rise through the Stripe Payments API. Sending "Thank You for Donating" transactional emails through Twilio Sendgrid.</div>
         </div>
-        <div class="category-item">
-            <h3>IoT Projects</h3>
-            <p class="intro">IoT projects have become my fun little hobby. Yet they still lend to my knowledge of developing and technology.  Most of the projects have either a companion iOS app or a web app to control them. The newest challenge was designing and etching a homebuilt custom PCB.</p>
-            <ul>
-                <li>Indianhead Valley Condos temperature sensors and lighting control and app</li>
-                <li>Electric line voltage smart thermostat and app</li>
-                <li>Turtle tank lighting and heat controller</li>
-                <li>Wifi garage door opener and app (Custom PCB)</li>
-            </ul>
+        <div class="cat-item">
+            <div class="cat-title">Crime Scene Evidence Marker</div>
+            <div class="intro">iOS app that allows police evidence techs, either in the field or in the lab, to use their phone as the evidence marker. Think the little yellow tent card that you see on crime shows.</div>
+        </div>
+        <div class="cat-item">
+            <div class="cat-title">Blood Spatter Angle Calculator</div>
+            <div class="intro">iOS app that law enforcement uses to calculate blood spatter angles at a crime scene.</div>
+        </div>
+        <div class="cat-item">
+            <div class="cat-title">Blood Spatter Angle Calculator Pro</div>
+            <div class="intro">iOS app that law enforcement uses to calculate blood spatter angles at a crime scene. This version of the app also saves the measurements in iCloud's CloudKit and prints reports to be used in court.</div>
+        </div>
+        <div class="cat-item">
+            <div class="cat-title">Crime Scene Photo Identifier Card</div>
+            <div class="intro">A super quick iOS app that is simply used by photographers (made for law enforcment evidence techs) to identify sections of pictures.</div>
+        </div>
+        <div class="cat-item">
+            <div class="cat-title">Simple Schedule Viewer</div>
+            <div class="intro">A different approach to the iOS calendar view. The app can access the native iOS calander and create events that can then be displayed in a way that is more like your kids sports schedule on the fridge.</div>
+        </div>
+        <div class="cat-item">
+            <div class="cat-title">Custom Wifi Garage Door Opener</div>
+            <div class="intro">One of my most gratifying projects because it was my first custom designed and etched PCB. The system uses a Particle Argon for Wifi connectivity and an iOS app with API calls to the Particle Cloud to open, close and check the doors current position.</div>
+        </div>
+        <div class="cat-item">
+            <div class="cat-title">Custom Smart Thermostat</div>
+            <div class="intro">Why pay for a smart thermostat when you can build one. Utilizing a Particle Argon controller then sensing temperature and humidity and current weather conditions to determine if the temp in the house should be bumped up to hold a more accurate FEELING temperature. A second sensing unit at the family cottage sends indoor temperature readings back to the main display unit at the house via a cellular Particle Boron. The iOS companion app has all of the functionality of the wall unit plus the addition of adjusting settings.</div>
+        </div>
+        <div class="cat-item">
+            <div class="cat-title">Wifi Turtle Tank Controller</div>
+            <div class="intro">Turtle tank environment controller that turns on/off the heat lamp, UVB lamp and heater. Particle Photon as the controller with a relay shield for power switching. I hacked a power strip to have controllable outlets. The enlcosure of the controller was printed on my 3d printer.</div>
         </div>
     </div>
-    <div id="languages" class="category">
-        <h2 class="quick">Languages - Frameworks - Systems</h2>
-        <p class="intro">Builing all of these project myself has pushed me to learn a number of different languages to complete the projects.</p>
-        <ul class="lang-small">
-            <li>HTML</li>
-            <li>CSS</li>
-            <li>Javascript</li>
-            <li>JQuery</li>
-            <li>Swift</li>
-            <li>Objective-C</li>
-            <li>PHP</li>
-            <li>Ruby</li>
-            <li>Rails</li>
-            <li>React</li>
-            <li>C++ (Wiring)</li>
-            <li>Python</li>
-            <li>SQL</li>
-            <li>AWS</li>
-        </ul>
-        <div class="lang-large">
-            <div>HTML</div>
-            <div>CSS</div>
-            <div>Javascript</div>
-            <div>JQuery</div>
-            <div>Swift</div>
-            <div>Objective-C</div>
-            <div>PHP</div>
-            <div>Ruby</div>
-            <div>Rails</div>
-            <div>React</div>
-            <div>C++ (Wiring)</div>
-            <div>Python</div>
-            <div>SQL</div>
-            <div>AWS</div>
+
+    <div class="resume-cat">
+        <div class="quick">Skills</div>
+    </div>
+    <div class="cat-items">
+        <div class="cat-item">
+            <div class="intro">HTML, CSS, Javascript, JQuery, Swift, Objective-C, PHP, Ruby, Rails, React, C++ (Wiring), Python, SQL, AWS</div>
         </div>
     </div>
-    <div id="certificates" class="category">
-        <h2 class="quick">Certificates from Lynda.com and LinkedIn</h2>
-        <ul>
-            <li>Learning React.js</li><li>Learning Server-Side Swift with Vapor</li><li>Accounting Foundations: Bookkeeping</li><li>Learning Video Production and Editing</li><li>Finance Essentials for Small Business</li><li>Accounting Foundations</li><li>Bootstrap 3 Essential Training</li><li>jQuery Essential Training</li><li>Validating and Processing Forms with Javascript and PHP</li><li>InDesign CS5: Print Production Guidelines</li><li>Swift Essential Training</li><li>Distributing iOS Applications Through the App Store</li><li>Learning Python</li><li>SQL Essential Training</li>
-        </ul>
+
+    <div class="resume-cat">
+        <div class="quick">Certificates</div>
     </div>
-    <div id="education" class="category">
-        <h2 class="quick">Education</h2>
-        <div class="category-item">
-            <p class="intro">Bachelors of Science in Business from Northern Michigan University 2005</p>
+    <div class="cat-items">
+        <div class="cat-item">
+            <div class="intro">Learning React.js, Accounting Foundations: Bookkeeping, Learning Video Production and Editing, Finance Essentials for Small Business, Accounting Foundations, Bootstrap 3 Essential Training, jQuery Essential Training, Validating and Processing Forms with Javascript and PHP, InDesign CS5: Print Production Guidelines, Swift Essential Training, Distributing iOS Applications Through the App Store, Learning Python, SQL Essential Training</div>
+        </div>
+    </div>
+
+    <div class="resume-cat">
+        <div class="quick">Eduction</div>
+    </div>
+    <div class="cat-items">
+        <div class="cat-item">
+            <div class="intro">Bachelors of Science from Northern Michigan University 2005</div>
         </div>
     </div>
 </div>
