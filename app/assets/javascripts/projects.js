@@ -4,7 +4,7 @@ $(document).on("turbolinks:load", function() {
     var indexInfo = [
         {
             title: 'Everything is Figureout<span class=\"mobileHyphen\">-</span>able!',
-            info: 'Some things that you will never hear me say are "I cant do that" or "I dont know how". I borrowed the phrase Everything is Figureoutable from <a href="https://www.marieforleo.com/" class="marieLink" target="_blank">Marie Forleo</a> but the idea that there is nothing that I can\'t figure out how to do given sometime to work through it has been my mental montra for as long as I can remember.'
+            info: 'Some things that you will never hear me say are "I cant do that" or "I dont know how". I borrowed the phrase Everything is Figureoutable from <a href="https://www.marieforleo.com/" class="marieLink" target="_blank" rel="noreferrer">Marie Forleo</a> but the idea that there is nothing that I can\'t figure out how to do given sometime to work through it has been my mental montra for as long as I can remember.'
         },
         {
             title: 'Making is my Passion!',
@@ -13,6 +13,7 @@ $(document).on("turbolinks:load", function() {
     ]
 
     var slideTimer = null;
+    clearInterval(slideTimer);
     var current = 0;
     slide(current);
     slideTimer = setInterval(function() {slide(current)}, 14000);
@@ -37,12 +38,12 @@ $(document).on("turbolinks:load", function() {
         });
     }
 
-    $(".headline").hover( function() {
-        clearInterval(slideTimer);
-    }, function() {
-        slide(current);
-        slideTimer = setInterval(function() {slide(current)}, 14000);
-    } )
+    // $(".headline").hover( function() {
+    //     clearInterval(slideTimer);
+    // }, function() {
+    //     slide(current);
+    //     slideTimer = setInterval(function() {slide(current)}, 14000);
+    // } )
 
     $(".c1").click(function() {
         clearInterval(slideTimer);

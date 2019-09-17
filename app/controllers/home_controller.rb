@@ -29,6 +29,7 @@ class HomeController < ApplicationController
                     outline_depth: 2}
         end
      end
+     @projects = Project.where(active: true).order('position ASC')
      @des = "This is the resume that Im hoping will appropriately dispay my past projects, current abiities and willingness to learn in the future."
      @title = "Peter Koruga | Resume"
   end

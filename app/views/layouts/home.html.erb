@@ -44,15 +44,17 @@
               <li class="contact"><%= link_to(fa_icon("envelope"), "mailto:peterk3@koruga.com?Subject=Portfolio%20Interest", aria: {label: "Peter Koruga's Email contact"}) %></li>
               <li class="contact">
                 <div class="contact-box">
-                  <div class="contact-icon twilio"><%= fa_icon("phone") %></div>
-                  <div class="contact-under twilio">Twilio</div>
+                  <div class="contact-icon twilio desk"><%= fa_icon("phone") %></div>
+                  <div class="contact-under twilio desk">Twilio</div>
+                  <div class="contact-icon mobile"><a href="tel:+1-906-662-4859"><%= fa_icon("phone") %></a></div>
+                  <div class="contact-under mobile">Twilio</div>
               </li>
             </ul>
         </div>
         <div class="nav-right">
             <ul>
                 <li><%= link_to('Projects', details_path()) %></li>
-                <li><%= link_to('Resume', resume_path()) %> <%= link_to(fa_icon("file"), "/resume.pdf", target: "_blank") %></li>
+                <li><%= link_to('Resume', resume_path()) %> <%= link_to(fa_icon("file"), "/resume.pdf", aria: {label:"View Peter's Resume as a PDF"}, target: "_blank") %></li>
                 <li class="stripe1">4 the Kids</li>
             </ul>
         </div>
