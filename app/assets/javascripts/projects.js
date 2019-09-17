@@ -1,6 +1,6 @@
 
 $(document).on("turbolinks:load", function() {
-
+    console.log("Loaded");
     var indexInfo = [
         {
             title: 'Everything is Figureout<span class=\"mobileHyphen\">-</span>able!',

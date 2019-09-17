@@ -345,6 +345,10 @@ body {
 
     .info {
         padding-bottom: 10px;
+
+        &.left {
+            text-align: left;
+        }
     }
 }
 
@@ -611,6 +615,10 @@ body {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         column-gap: 15px;
+    }
+
+    .stretch {
+        grid-column: 1/4;
     }
 
     .projects {
