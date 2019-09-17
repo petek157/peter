@@ -7,7 +7,7 @@
         <% @projects.each do |p| %>
             <div class="cat-item">
                 <div class="cat-title"><%= p.title %></div>
-                <div class="intro">
+                <div class="intro tech">
                     <% for i in 0...p.teches.count %>
                         <% if i < p.teches.count-1 %>
                             <%= "#{p.teches[i].name}," %>
