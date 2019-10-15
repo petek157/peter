@@ -1,15 +1,47 @@
 class HomeController < ApplicationController
+  require "base64"
+  require "json"
+
   def index
     @projects = Project.where(active: true).order('position ASC')
 
     @des = "Hello, My name is Peter Koruga. I am a self taught developer actively looking to continue my software development career."
     @title = "Peter Koruga | Welcome!"
 
-    puts("******************************************************")
-    puts(" ")
-    puts("******************************************************")
-    puts(request.remote_ip)
-    puts("******************************************************")
+
+    #Tracking visitors
+    if (params[:appid])#Used URL with an appliction code
+      application = JobApplication.where(gen_code: params[:appid]).first
+      if cookies[:pka_id].nil?
+
+        p_cook = "{\"appid\": \"#{application.id}\", \"c_date\": \"#{(Time.now.to_i).to_s}\"}"
+        b_cook = Base64.encode64(p_cook)
+
+        cookies[:pka_id] = {
+          :value => b_cook,
+          :expires => 6.months.from_now
+        }
+        Tracker.create(ip_address: request.remote_ip, job_application_id: application.id, cookie: b_cook, url_clicked: true)
+      else
+        Tracker.create(ip_address: request.remote_ip, job_application_id: application.id, cookie: cookies[:pka_id], url_clicked: true)
+      end
+
+    else #Used the URL without the application code
+      
+      unless cookies[:pka_id].nil?
+        info = JSON.parse(Base64.decode64(cookies[:pka_id]))
+
+        if JobApplication.exists?(info["appid"])
+          Tracker.create(ip_address: request.remote_ip, job_application_id: info["appid"].to_i, cookie: cookies[:pka_id])
+        else
+          cookies.delete :pka_id
+        end
+
+      end
+
+    end
+    #Tracking visitors
+
   end
 
   def resume

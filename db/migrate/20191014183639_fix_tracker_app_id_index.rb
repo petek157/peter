@@ -1,0 +1,5 @@
+class FixTrackerAppIdIndex < ActiveRecord::Migration[5.2]
+  def change
+    remove_column :trackers, :job_application_id
+  end
+end

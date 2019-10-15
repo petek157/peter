@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   root 'home#index'
 
   get 'admin', :to => 'access#menu'
@@ -17,6 +17,12 @@ Rails.application.routes.draw do
   get 'home/resume'
   get 'home/resume/print', :to => 'home#print'
   get 'home/detail'
+
+  resources :job_applications do
+    member do
+      get :delete
+    end
+  end
 
   resources :projects do
     member do

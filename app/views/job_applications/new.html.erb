@@ -1,0 +1,25 @@
+<h1>Create Job Application</h1>
+<br />
+
+<div class='admin-project'>
+    <%= form_for @app do |f| %>
+        <%= f.hidden_field(:gen_code, :readonly => true) %>
+
+        <div class="project-form-fields">
+
+            <%= content_tag(:div, f.text_field(:company, class: ["form-input", "form-company"], placeholder: "Company applying to"), class: "form-item") %>
+
+            <%= content_tag(:div, f.text_field(:position_applied, class: ["form-input", "form-position"], placeholder: "Position applying for"), class: "form-item") %>
+
+            <%= content_tag(:div, f.text_area(:application_notes, class: ["form-input", "form-app-notes"], placeholder: "Application Notes"), class: "form-item") %>
+
+            <div class="form-buttons">
+                <%= f.submit("Create Application") %>
+                <%= link_to_if(@count > 0, "Cancel", job_applications_path()) do
+                        link_to("Cancel", projects_path())
+                    end
+                %>
+            </div>
+        </div>
+    <% end %>     
+</div>
