@@ -34,6 +34,16 @@ body.admin {
     text-align: right;
     line-height: 30px;
     padding-right: 10px;
+
+    li {
+        display: inline;
+        text-decoration: none;
+        padding-left: 10px;
+
+        a {
+            text-decoration: none;;
+        }
+    }
 }
 
 .admin-menu-title {
@@ -117,6 +127,10 @@ html {
     background-image: url(/images/background.svg);
     background-size: cover;
     background-attachment: fixed;
+
+    &.admin {
+        background-image: unset;
+    }
 }
 
 body {

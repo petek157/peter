@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html class="admin" lang="en">
+  <head>
+    <title>Peter</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#fc9c54"/>
+    <link rel="apple-touch-icon" href="images/icons/touch-icon-iphone.png">
+  </head>
+
+  <body class="admin">
+    
+    <div id="note"><!-- Make success error dynamic-->
+      <% if !flash[:notice].blank? %>
+          <div class="success">
+              <%= flash[:notice] %>
+          </div>
+      <% else %>
+          <div class="divider">
+              
+          </div>
+      <% end %>
+    </div>
+    <%= yield %>
+  </body>
+</html>

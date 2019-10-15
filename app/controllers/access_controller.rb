@@ -1,4 +1,6 @@
 class AccessController < ApplicationController
+  layout 'admin'
+  
   def menu
     projects = Project.all
     redirect_to project_path(projects[0])

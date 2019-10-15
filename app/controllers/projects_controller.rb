@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
 
   before_action :confirm_logged_in, :only => [:create, :update, :destroy]
-
+  layout 'admin'
   def index
     @projects = Project.all().order('position ASC')
     if @projects.length == 0
