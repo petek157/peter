@@ -54,8 +54,19 @@
             <div class="form-buttons">
                 <%= f.submit("Edit Application") %>
                 <%= link_to("Cancel", job_application_path(@app)) %>
-                <%= link_to("Create Resume", new_resume_path(appid: @app.id)) %>
+                <% unless @resume %>
+                    <%= link_to("Create Resume", new_resume_path(appid: @app.id)) %>
+                <% end %>
             </div>
+            <% if @resume %>
+                <div class="resume-container">
+                    Resume
+                    <ul>
+                        <li>View</li>
+                        <li><%=link_to "Edit", edit_resume_path(@resume) %></li>
+                    </ul>
+                </div>
+            <% end %>
         </div>
     <% end %>     
 </div>

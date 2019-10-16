@@ -1,7 +1,7 @@
 class ResumesController < ApplicationController
   layout 'admin'
   before_action :confirm_logged_in, :only => [:create, :update, :destroy]
-  
+
   def index
     @res = Resume.all()
     if @res.length == 0
@@ -32,11 +32,21 @@ class ResumesController < ApplicationController
   end
 
   def edit
-
+    @res = Resume.find(params[:id])
+    @app = JobApplication.find(@res.job_application_id)
+    @count  = Resume.all().size
   end
 
   def update
+    res = Resume.find(params[:id])
+    app = JobApplication.find(res.job_application_id)
 
+    if res.update_attributes(resume_params)
+      flash[:notice] = "Successfully edited resume for #{app.position_applied} at #{app.company} ."
+      redirect_to(job_application_path(app))
+    else
+      render('show')
+    end
   end
 
   def delete

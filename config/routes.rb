@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   post 'access/attempt_login'
   get 'access/logout'
 
-  get 'resume', :to => 'home#resume'
+  #get 'resume', :to => 'home#resume'
   get 'details', :to => 'home#detail'
   get 'contact', :to => 'home#contact'
   post 'donate', :to => 'home#donate'

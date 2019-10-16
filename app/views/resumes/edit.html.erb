@@ -1,2 +1,43 @@
-<h1>Resumes#edit</h1>
-<p>Find me in app/views/resumes/edit.html.erb</p>
+<h1>Edit Resume for <%= "#{@app.position_applied} at #{@app.company}"%></h1>
+<br />
+
+<div class='admin-project'>
+    <%= form_for @res do |f| %>
+        <%= f.hidden_field(:job_application_id, :readonly => true) %>
+
+        <div class="project-form-fields">
+
+            <%= content_tag(:div, f.text_field(:title, class: ["form-input", "form-company"], placeholder: "Title under contact info"), class: "form-item") %>
+
+            <%= content_tag(:div, f.text_field(:expir_desc, class: ["form-input", "form-position"], placeholder: "Experience section description"), class: "form-item") %>
+
+            <!--Select Projects to include in the resume-->
+            <div class="form-tech form-item">
+                <%= f.collection_check_boxes( :project_ids, Project.all, :id, :title, class: ["form-input", "form-description"])%>
+            </div>
+
+            <%= content_tag(:div, f.text_field(:tech_desc, class: ["form-input", "form-position"], placeholder: "Tech section description"), class: "form-item") %>
+
+            <!--Select Tech items to include in the resume-->
+            <div class="form-tech form-item">
+                <%= f.collection_check_boxes( :tech_ids, Tech.all, :id, :name, class: ["form-input", "form-description"]) do |b|
+                    b.label(class: "check_box") { b.check_box(checked: true, class: "add_margin") + b.text }
+                end %>
+            </div>
+
+            <%= content_tag(:div, f.text_field(:cert_desc, class: ["form-input", "form-position"], placeholder: "Certificate section description"), class: "form-item") %>
+
+            <!--Select Certificates to include in the resume-->
+            <div class="form-tech form-item">
+                <%= f.collection_check_boxes( :certificate_ids, Certificate.all, :id, :title, class: ["form-input", "form-description"]) do |b|
+                    b.label(class: "check_box") { b.check_box(checked: true, class: "add_margin") + b.text }
+                end %>
+            </div>
+
+            <div class="form-buttons">
+                <%= f.submit("Edit Resume") %>
+                <%= link_to("Cancel", job_application_path(@res.job_application_id)) %>
+            </div>
+        </div>
+    <% end %>     
+</div>
