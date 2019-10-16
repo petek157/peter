@@ -1,0 +1,20 @@
+<h1>Create Certificate</h1>
+<br />
+
+<div class='admin-project'>
+    <%= form_for @cert do |f| %>
+
+        <div class="project-form-fields">
+
+            <%= content_tag(:div, f.text_field(:title, class: ["form-input", "form-company"], placeholder: "Certificate Title"), class: "form-item") %>
+
+            <div class="form-buttons">
+                <%= f.submit("Create certificate") %>
+                <%= link_to_if(@count > 0, "Cancel", certificates_path()) do
+                        link_to("Cancel", projects_path())
+                    end
+                %>
+            </div>
+        </div>
+    <% end %>     
+</div>

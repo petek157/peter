@@ -1,0 +1,46 @@
+<div class="admin-projects">
+    <div class="admin-top">
+        <div class="admin-head-page-title">Admin Area</div>
+        <div class="admin-menu">
+            <% if @user %>
+                <ul>
+                    <li><%= link_to("Certificates" , certificates_path()) %></li>
+                    <li><%= link_to("Projects" , projects_path()) %></li>
+                    <li><%= link_to("Applications" , job_applications_path()) %></li>
+                    <li><%= link_to("Logout #{@user.first_name}" , access_logout_path()) %></li>
+                </ul>
+                
+                <% else %>
+                 <%= link_to('Login', access_login_path()) %>
+                 <% end %>
+            </div>
+    </div>
+    <div class="project-list">
+        <div class="admin-menu-title">Certificates</div>
+        <%= content_tag(:div, link_to("+ New Certificates", new_certificate_path()), class: "project-title") %>
+ 
+        <% @allcerts.each do |cert| %>
+            <% if cert.id == @cert.id%>
+                <div class='project-title selected'><%= link_to(cert.title, certificate_path(cert.id)) %></div>
+            <% else %>
+                <div class='project-title'><%= link_to(cert.title, certificate_path(cert.id)) %></div>
+            <% end %>
+        <% end %>
+
+    </div>
+    <div class='admin-project'>
+    <%= form_for(@cert) do |f| %>
+        <%= hidden_field(:gen_code, :readonly => true) %>
+
+        <div class="project-form-fields">
+
+            <%= content_tag(:div, f.text_field(:title, class: ["form-input", "form-company"], placeholder: "Certificate Title"), class: "form-item") %>
+
+            <div class="form-buttons">
+                <%= f.submit("Edit Certificate") %>
+                <%= link_to("Cancel", certificate_path(@cert)) %>
+            </div>
+        </div>
+    <% end %>     
+</div>
+</div>

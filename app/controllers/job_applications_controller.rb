@@ -16,6 +16,9 @@ class JobApplicationsController < ApplicationController
     @allapps = JobApplication.all()
     @app = JobApplication.find(params[:id])
 
+    unless @app.resume.nil?
+      @resume = @app.resume
+    end
     allT = Tracker.where(url_clicked: false)
 
     ts_ips = []
@@ -43,6 +46,7 @@ class JobApplicationsController < ApplicationController
 
     @app = JobApplication.new(gen_code: key)
     @count  = JobApplication.all().size
+
   end
 
   def create
@@ -54,10 +58,17 @@ class JobApplicationsController < ApplicationController
   end
 
   def edit
+    @app = JobApplication.find(params[:id])
   end
 
   def update
-
+    @app = JobApplication.find(params[:id])
+    if @app.update_attributes(apps_params)
+      flash[:notice] = "#{@app.position_applied} at #{@app.company} application has been updated."
+      redirect_to(job_application_path(@app))
+    else
+      render('show')
+    end
   end
 
   def delete

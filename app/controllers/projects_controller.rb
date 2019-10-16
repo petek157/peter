@@ -77,7 +77,7 @@ class ProjectsController < ApplicationController
 
   def confirm_logged_in
     unless session[:user_id]
-      flash[:notice] = 'You didnt think that Id let you change things did you? I just left it open for you to see my VERY simple, mostly unnecessary backend system as another entry in my portfolio.'
+      flash[:notice] = 'You didnt think that Id let you change things did you? I just left it open for you to see my VERY simple, mostly unnecessary admin system as another entry in my portfolio.'
       if params[:id]
         redirect_to project_path(params[:id])
       else

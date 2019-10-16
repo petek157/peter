@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_14_192357) do
+ActiveRecord::Schema.define(version: 2019_10_16_223450) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -31,6 +31,18 @@ ActiveRecord::Schema.define(version: 2019_10_14_192357) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "certificates", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "certificates_resumes", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
+    t.integer "resume_id"
+    t.integer "certificate_id"
+    t.index ["resume_id", "certificate_id"], name: "index_certificates_resumes_on_resume_id_and_certificate_id"
   end
 
   create_table "job_applications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
@@ -58,10 +70,34 @@ ActiveRecord::Schema.define(version: 2019_10_14_192357) do
     t.string "main_alt"
   end
 
+  create_table "projects_resumes", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
+    t.integer "project_id"
+    t.integer "resume_id"
+    t.index ["project_id", "resume_id"], name: "index_projects_resumes_on_project_id_and_resume_id"
+  end
+
   create_table "projects_teches", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
     t.integer "project_id"
     t.integer "tech_id"
     t.index ["project_id", "tech_id"], name: "index_projects_teches_on_project_id_and_tech_id"
+  end
+
+  create_table "resumes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
+    t.string "title"
+    t.string "edu_desc"
+    t.string "cert_desc"
+    t.string "tech_desc"
+    t.string "expir_desc"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "job_application_id"
+    t.index ["job_application_id"], name: "index_resumes_on_job_application_id"
+  end
+
+  create_table "resumes_teches", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
+    t.integer "tech_id"
+    t.integer "resume_id"
+    t.index ["tech_id", "resume_id"], name: "index_resumes_teches_on_tech_id_and_resume_id"
   end
 
   create_table "teches", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
@@ -89,6 +125,11 @@ ActiveRecord::Schema.define(version: 2019_10_14_192357) do
     t.string "role", limit: 25
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "phone"
+    t.string "website"
+    t.string "linkedIn"
+    t.string "github"
+    t.string "education"
     t.index ["username"], name: "index_users_on_username"
   end
 
