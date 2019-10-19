@@ -13,6 +13,11 @@ class ResumesController < ApplicationController
 
   def show
     @user = User.find(session[:user_id]) if session[:user_id]
+    @resume
+    @appid
+    @projects
+    @techGroups
+    
     @allresumes = Resume.all()
     @res = Resume.find(params[:id])
   end
