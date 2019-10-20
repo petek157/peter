@@ -1,6 +1,6 @@
 class ResumesController < ApplicationController
   layout 'admin'
-  before_action :confirm_logged_in, :only => [:create, :update, :destroy]
+  before_action :confirm_logged_in, :only => [:create, :update, :delete, :destroy]
 
   def index
     @res = Resume.all()
@@ -13,13 +13,33 @@ class ResumesController < ApplicationController
 
   def show
     @user = User.find(session[:user_id]) if session[:user_id]
-    @resume
-    @appid
-    @projects
-    @techGroups
+    @resume = Resume.find(1)
+    @appCode = JobApplication.select(:gen_code).find(@resume.job_application_id).gen_code
     
-    @allresumes = Resume.all()
-    @res = Resume.find(params[:id])
+    @projects = Project.where(active: true).order('position ASC')
+
+    @techGroups = []
+    teches = Tech.all
+    t_count = teches.size
+    if t_count % 2 != 0
+      @techGroups << teches[0, (t_count/2+1)]
+      @techGroups << teches[(t_count/2+1), (t_count/2)]
+    else
+      @techGroups << teches[0, (t_count/2)]
+      @techGroups << teches[(t_count/2), (t_count/2)]
+    end
+    
+    @certGroups = []
+    certs = Certificate.all
+    c_count = certs.size
+    if c_count % 2 != 0
+      @certGroups << certs[0, (c_count/2+1)]
+      @certGroups << certs[(c_count/2+1), (c_count/2)]
+    else
+      @certGroups << certs[0, (c_count/2)]
+      @certGroups << certs[(c_count/2), (c_count/2)]
+    end
+
   end
 
   def new

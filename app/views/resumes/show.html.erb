@@ -1,6 +1,6 @@
 <div class=".print_res">
-    <div class='n'><%= "#{@user.first_name} #{@user.last_name}"</div>
-    <div class='c'><%= "#{@user.phone} - #{@user.email} - https://peter.koruga.com?appid=#{@appid}" %></div>
+    <div class='n'><%= "#{@user.first_name} #{@user.last_name}" %></div>
+    <div class='c'><%= "#{@user.phone} - #{@user.email} - https://peter.koruga.com?appid=#{@appCode}" %></div>
     <div class="me-intro">@resume.title</div>
     <div class="h">Experience</div>
     <div class='cat'>
@@ -19,80 +19,57 @@
     <div class='cat'>
         <div class="i"><%= @resume.tech_desc%></div>
         <div class="resumer-container">
-            <% @techGroups.each do |tg| %>
-
-            <% end %>
-        </div>
-        <div class="item">
-            <div class="list">
-                <table class="other">
-                    <tr>
-                        <td>
-                            <ul>
-                                <li class="rli">HTML</li>
-                                <li class="rli">CSS</li>
-                                <li class="rli">Javascript</li>
-                                <li class="rli">JQuery</li>
-                                <li class="rli">Swift</li>
-                                <li class="rli">Objective-C</li>
-                                <li class="rli">PHP</li>
-                            <ul>
-                        </td>
-                        <td>
-                            <ul>
-                                <li class="rli">Ruby</li>
-                                <li class="rli">Rails</li>
-                                <li class="rli">React</li>
-                                <li class="rli">C++ (Wiring)</li>
-                                <li class="rli">Python</li>
-                                <li class="rli">SQL</li>
-                                <li class="rli">AWS</li>
-                            </ul>
-                        </td>
-                    </tr>
-                </table>
+            <div class="item">
+                <div class="list">
+                    <table class="other">
+                        <tr>
+                            <% @techGroups.each do |tg| %>
+                                <td>
+                                    <ul>
+                                        <% tg.each do |t| %>
+                                            <li class="rli"><%= t.name %></li>
+                                        <% end %>
+                                    <ul>
+                                </td>
+                            <% end %>
+                        </tr>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
 
     <div class="h">Certificates from Lynda.com and LinkedIn</div>
         <div class='cat'>
-            <div class="item">
-                <div class="list">
-                    <table class="other">
-                        <tr>
-                            <td>
-                                <ul>
-                                    <li class="rli">Learning React.js</li>
-                                    <li class="rli">Learning Server-Side Swift with Vapor</li>
-                                    <li class="rli">Accounting Foundations: Bookkeeping</li>
-                                    <li class="rli">Learning Video Production and Editing</li>
-                                    <li class="rli">Finance Essentials for Small Business</li>
-                                    <li class="rli">Accounting Foundations</li>
-                                    <li class="rli">Bootstrap 3 Essential Training</li>
-                                </ul>
-                            </td>
-                            <td>
-                                <ul>
-                                    <li class="rli">jQuery Essential Training</li>
-                                    <li class="rli">Validating and Processing Forms with Javascript and PHP</li>
-                                    <li class="rli">InDesign CS5: Print Production Guidelines</li>
-                                    <li class="rli">Swift Essential Training</li>
-                                    <li class="rli">Distributing iOS Applications Through the App Store</li>
-                                    <li class="rli">Learning Python</li>
-                                    <li class="rli">SQL Essential Training</li>
-                                </ul>
-                            </td>
-                        </tr>
-                    </table>
+            <div class="i"><%= @resume.tech_desc%></div>
+            <div class="resumer-container">
+                <div class="item">
+                    <div class="list">
+                        <table class="other">
+                            <tr>
+                                <% @certGroups.each do |cg| %>
+                                    <td>
+                                        <ul>
+                                            <% cg.each do |c| %>
+                                                <li class="rli"><%= c.title %></li>
+                                            <% end %>
+                                        <ul>
+                                    </td>
+                                <% end %>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
 
     <div class="h">Education</div>
         <div class='cat'>
-            <div class="item">
-                <div class="i">Bachelors of Science in Business from Northern Michigan University 2005</div>
+            <div class="i"><%= @resume.edu_desc%></div>
+            <div class="resumer-container">
+                <div class="item">
+                    <div class="i">Bachelors of Science in Business from Northern Michigan University 2005</div>
+                </div>
             </div>
         </div>
 </div>
