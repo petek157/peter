@@ -1,3 +1,51 @@
 // Place all the styles related to the JobApplications controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+$light-yellow: #FFFFA6;
+$yellow: #FFE373;
+$light-orange: #FC9C54;
+$orange: #FD5E53;
+
+.resume-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%
+}
+.floating-nav-job {
+
+    display: flex;
+    justify-content: flex-start;
+}
+
+.res-button {
+    min-width: 50px;
+    height: 30px;
+    border-radius: 5px;
+    text-align: center;
+    border: none;
+    font-size: 13px;
+    a {
+        text-decoration: none;
+        color: black;
+    }
+}
+
+.back {
+ background-color: $orange;
+ 
+ &:hover {
+     background-color: $light-orange;
+ }
+}
+
+.print {
+    background-color: $yellow;
+ 
+ &:hover {
+     background-color: $light-yellow;
+ }
+}
+
+.resume-pdf-container {
+    width: 100%;
+}

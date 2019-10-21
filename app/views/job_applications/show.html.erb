@@ -49,24 +49,29 @@
 
             <%= content_tag(:div, f.text_area(:application_notes, class: ["form-input", "form-app-notes"], placeholder: "Application Notes"), class: "form-item") %>
 
-            <%= content_tag(:div, "https://peter.koruga.com?appid=#{@app.gen_code}", class: "form-item") %>
+            <%= content_tag(:p, "https://peter.koruga.com?appid=#{@app.gen_code}", class: "form-item") %>
 
             <div class="form-buttons">
-                <%= f.submit("Edit Application") %>
-                <%= link_to("Cancel", job_application_path(@app)) %>
-                <% unless @resume %>
-                    <%= link_to("Create Resume", new_resume_path(appid: @app.id)) %>
-                <% end %>
+                <%= f.submit("Edit Application", class: ["res-button", "print"]) %>
+                <button class="res-button back"><%= link_to("Cancel", job_application_path(@app)) %></button>
             </div>
-            <% if @resume %>
-                <div class="resume-container">
-                    Resume
-                    <ul>
-                        <li><%= link_to "View", resume_path(@resume) %></li>
-                        <li><%=link_to "Edit", edit_resume_path(@resume) %></li>
-                    </ul>
+            
+            <div class="resume-container">
+                <p>Resume</p>
+                <div class="floating-nav-job">
+                    <% if @resume %>
+                    <button class="res-button print"><%= link_to "View", resume_path(@resume) %></button>
+                        <button class="res-button print"><%= link_to "PDF", pdf_resume_path(@resume, format: :pdf) %></button>
+                        <button class="res-button print"><%= link_to "Edit", edit_resume_path(@resume) %></button>
+                    <% else %>
+                        <button class="res-button print"><%= link_to "Create Resume", new_resume_path(appid: @app.id) %></button>
+                    <% end %>
                 </div>
-            <% end %>
+                <div class="resume-pdf-container">
+                    <div class="resume"></div>
+                </div>
+            </div>
+            
         </div>
     <% end %>     
 </div>

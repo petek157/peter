@@ -12,9 +12,11 @@ class ResumesController < ApplicationController
   end
 
   def show
+
     @user = User.find(session[:user_id]) if session[:user_id]
-    @resume = Resume.find(1)
-    @appCode = JobApplication.select(:gen_code).find(@resume.job_application_id).gen_code
+    @resume = Resume.find(params[:id])
+    @app = JobApplication.find(@resume.job_application_id)
+    @appCode = @app.gen_code
     
     @projects = Project.where(active: true).order('position ASC')
 
@@ -40,6 +42,54 @@ class ResumesController < ApplicationController
       @certGroups << certs[(c_count/2), (c_count/2)]
     end
 
+  end
+
+  def pdf 
+    @user = User.find(session[:user_id]) if session[:user_id]
+    @resume = Resume.find(params[:id])
+    @app = JobApplication.find(@resume.job_application_id)
+    @appCode = @app.gen_code
+    
+    @projects = Project.where(active: true).order('position ASC')
+
+    @techGroups = []
+    teches = Tech.all
+    t_count = teches.size
+    if t_count % 2 != 0
+      @techGroups << teches[0, (t_count/2+1)]
+      @techGroups << teches[(t_count/2+1), (t_count/2)]
+    else
+      @techGroups << teches[0, (t_count/2)]
+      @techGroups << teches[(t_count/2), (t_count/2)]
+    end
+    
+    @certGroups = []
+    certs = Certificate.all
+    c_count = certs.size
+    if c_count % 2 != 0
+      @certGroups << certs[0, (c_count/2+1)]
+      @certGroups << certs[(c_count/2+1), (c_count/2)]
+    else
+      @certGroups << certs[0, (c_count/2)]
+      @certGroups << certs[(c_count/2), (c_count/2)]
+    end
+
+    respond_to  do |format|
+
+      format.pdf do
+        render pdf: 'test',
+          template: 'home/print.html.erb',
+          layout: 'resume.html.erb',
+          page_size: 'letter',
+          show_as_html: params.key?('debug'),
+          margin: {top: 15,
+                  bottom: 7,
+                  left: 10,
+                  right: 10},
+          outline: {outline: true,
+                    outline_depth: 2}
+        end
+     end
   end
 
   def new

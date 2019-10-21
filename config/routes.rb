@@ -39,6 +39,7 @@ Rails.application.routes.draw do
   resources :resumes do
     member do
       get :delete
+      get :pdf
     end
   end
 
