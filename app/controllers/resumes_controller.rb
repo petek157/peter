@@ -99,11 +99,45 @@ class ResumesController < ApplicationController
   end
 
   def create
+    @user = User.find(session[:user_id]) if session[:user_id]
+    @resume = Resume.create!(resume_params)
+    @app = JobApplication.find(@resume.job_application_id)
+    @appCode = @app.gen_code
 
-    res = Resume.create!(resume_params)
-    app = JobApplication.find(res.job_application_id)
-    flash[:notice] = "Successfully created resume for #{app.position_applied} at #{app.company} ."
-    redirect_to(job_application_path(app))
+    @projects = Project.where(active: true).order('position ASC')
+
+    @techGroups = []
+    teches = Tech.all
+    t_count = teches.size
+    if t_count % 2 != 0
+      @techGroups << teches[0, (t_count/2+1)]
+      @techGroups << teches[(t_count/2+1), (t_count/2)]
+    else
+      @techGroups << teches[0, (t_count/2)]
+      @techGroups << teches[(t_count/2), (t_count/2)]
+    end
+    
+    @certGroups = []
+    certs = Certificate.all
+    c_count = certs.size
+    if c_count % 2 != 0
+      @certGroups << certs[0, (c_count/2+1)]
+      @certGroups << certs[(c_count/2+1), (c_count/2)]
+    else
+      @certGroups << certs[0, (c_count/2)]
+      @certGroups << certs[(c_count/2), (c_count/2)]
+    end
+
+    pdf = WickedPdf.new.pdf_from_string(
+      render_to_string('home/print.html.erb', layout: 'resume.html.erb')
+    ) 
+
+    @resume.res_pdf = pdf
+
+    @resume.save
+
+    flash[:notice] = "Successfully created resume for #{@app.position_applied} at #{@app.company} ."
+    redirect_to(job_application_path(@app))
   end
 
   def edit
@@ -113,12 +147,48 @@ class ResumesController < ApplicationController
   end
 
   def update
-    res = Resume.find(params[:id])
-    app = JobApplication.find(res.job_application_id)
+    @user = User.find(session[:user_id]) if session[:user_id]
+    @resume = Resume.find(params[:id])
+    @app = JobApplication.find(@resume.job_application_id)
 
-    if res.update_attributes(resume_params)
-      flash[:notice] = "Successfully edited resume for #{app.position_applied} at #{app.company} ."
-      redirect_to(job_application_path(app))
+    @appCode = @app.gen_code
+
+    @projects = Project.where(active: true).order('position ASC')
+
+    @techGroups = []
+    teches = Tech.all
+    t_count = teches.size
+    if t_count % 2 != 0
+      @techGroups << teches[0, (t_count/2+1)]
+      @techGroups << teches[(t_count/2+1), (t_count/2)]
+    else
+      @techGroups << teches[0, (t_count/2)]
+      @techGroups << teches[(t_count/2), (t_count/2)]
+    end
+    
+    @certGroups = []
+    certs = Certificate.all
+    c_count = certs.size
+    if c_count % 2 != 0
+      @certGroups << certs[0, (c_count/2+1)]
+      @certGroups << certs[(c_count/2+1), (c_count/2)]
+    else
+      @certGroups << certs[0, (c_count/2)]
+      @certGroups << certs[(c_count/2), (c_count/2)]
+    end
+
+    
+
+    if @resume.update_attributes(resume_params)
+      flash[:notice] = "Successfully edited resume for #{@app.position_applied} at #{@app.company} ."
+
+      pdf = WickedPdf.new.pdf_from_string(
+        render_to_string('home/print.html.erb', layout: 'resume.html.erb')
+      ) 
+      
+      @resume.res_pdf.attach(io: StringIO.new(pdf), filename: "#{@appCode}.pdf", content_type: "application/pdf")
+      
+      redirect_to(job_application_path(@app))
     else
       render('show')
     end
@@ -135,7 +205,7 @@ class ResumesController < ApplicationController
   private
 
   def resume_params
-    params.require(:resume).permit(:job_application_id, :title, :cert_desc, :tech_desc, :expir_desc, :job_application_id, project_ids: [], certificate_ids: [], tech_ids: [])
+    params.require(:resume).permit(:job_application_id, :title, :cert_desc, :tech_desc, :expir_desc, :job_application_id, :res_pdf, project_ids: [], certificate_ids: [], tech_ids: [])
   end
 
   def confirm_logged_in

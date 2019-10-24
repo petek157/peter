@@ -60,8 +60,13 @@
                 <p>Resume</p>
                 <div class="floating-nav-job">
                     <% if @resume %>
-                    <button class="res-button print"><%= link_to "View", resume_path(@resume) %></button>
-                        <button class="res-button print"><%= link_to "PDF", pdf_resume_path(@resume, format: :pdf) %></button>
+                        <button class="res-button print"><%= link_to "View", resume_path(@resume) %></button>
+                        <% if @resume.res_pdf.attached? %>
+                            <button class="res-button print"><%= link_to "PDF", url_for(@resume.res_pdf) %></button>
+                            <button class="res-button print"><%= link_to "Download", rails_blob_path(@resume.res_pdf, disposition: "attachment")%></button>
+
+
+                        <% end %>
                         <button class="res-button print"><%= link_to "Edit", edit_resume_path(@resume) %></button>
                     <% else %>
                         <button class="res-button print"><%= link_to "Create Resume", new_resume_path(appid: @app.id) %></button>
