@@ -128,13 +128,17 @@ class ResumesController < ApplicationController
       @certGroups << certs[(c_count/2), (c_count/2)]
     end
 
+    @resume.save
+    
     pdf = WickedPdf.new.pdf_from_string(
       render_to_string('home/print.html.erb', layout: 'resume.html.erb')
     ) 
 
-    @resume.res_pdf = pdf
+    @resume.res_pdf.attach(io: StringIO.new(pdf), filename: "#{@user.first_name}#{@user.last_name}Resume.pdf", content_type: "application/pdf")
 
-    @resume.save
+    # @resume.res_pdf = pdf
+
+    
 
     flash[:notice] = "Successfully created resume for #{@app.position_applied} at #{@app.company} ."
     redirect_to(job_application_path(@app))
@@ -186,7 +190,7 @@ class ResumesController < ApplicationController
         render_to_string('home/print.html.erb', layout: 'resume.html.erb')
       ) 
       
-      @resume.res_pdf.attach(io: StringIO.new(pdf), filename: "#{@appCode}.pdf", content_type: "application/pdf")
+      @resume.res_pdf.attach(io: StringIO.new(pdf), filename: "#{@user.first_name}#{@user.last_name}Resume.pdf", content_type: "application/pdf")
       
       redirect_to(job_application_path(@app))
     else

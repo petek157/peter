@@ -2,18 +2,17 @@
     <div class="admin-top">
         <div class="admin-head-page-title">Admin Area</div>
         <div class="admin-menu">
-            <% if @user %>
-                <ul>
-                    <li><%= link_to("Certificates" , certificates_path()) %></li>
-                    <li><%= link_to("Projects" , projects_path()) %></li>
-                    <li><%= link_to("Applications" , job_applications_path()) %></li>
-                    <li><%= link_to("Logout #{@user.first_name}" , access_logout_path()) %></li>
-                </ul>
-                
-                <% else %>
-                 <%= link_to('Login', access_login_path()) %>
-                 <% end %>
-            </div>
+            <ul>
+                <li><%= link_to("Certificates" , certificates_path()) %></li>
+                <li><%= link_to("Projects" , projects_path()) %></li>
+            <% unless @user %>
+                <li><%= link_to('Login', access_login_path()) %></li>
+            <% else %>
+                <li><%= link_to("Applications" , job_applications_path()) %></li>
+                <li><%= link_to("Logout #{@user.first_name}" , access_logout_path()) %></li>
+            <% end %>
+            </ul> 
+        </div>
     </div>
     <div class="project-list">
         <div class="admin-menu-title">Applications</div>
@@ -45,6 +44,8 @@
 
             <%= content_tag(:div, f.text_field(:position_applied, class: ["form-input", "form-position"], placeholder: "Position applying for"), class: "form-item") %>
             
+            <%= content_tag(:div, f.text_field(:comp_jobid, class: ["form-input", "form-company"], placeholder: "Companies Job ID"), class: "form-item") %>
+
             <%= content_tag(:div, f.text_field(:response, class: ["form-input", "form-company"], placeholder: "Response from company"), class: "form-item") %>
 
             <%= content_tag(:div, f.text_area(:application_notes, class: ["form-input", "form-app-notes"], placeholder: "Application Notes"), class: "form-item") %>
@@ -60,9 +61,8 @@
                 <p>Resume</p>
                 <div class="floating-nav-job">
                     <% if @resume %>
-                        <button class="res-button print"><%= link_to "View", resume_path(@resume) %></button>
                         <% if @resume.res_pdf.attached? %>
-                            <button class="res-button print"><%= link_to "PDF", url_for(@resume.res_pdf) %></button>
+                            <button class="res-button print"><%= link_to "View PDF", url_for(@resume.res_pdf) %></button>
                             <button class="res-button print"><%= link_to "Download", rails_blob_path(@resume.res_pdf, disposition: "attachment")%></button>
 
 

@@ -82,7 +82,7 @@ class JobApplicationsController < ApplicationController
   private
 
   def apps_params
-    params.require(:job_application).permit(:company, :position_applied, :gen_code, :application_notes, :response)
+    params.require(:job_application).permit(:company, :position_applied, :gen_code, :application_notes, :response, :comp_jobid)
   end
 
   def confirm_logged_in
