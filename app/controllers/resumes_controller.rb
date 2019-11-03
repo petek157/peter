@@ -21,7 +21,7 @@ class ResumesController < ApplicationController
     @projects = Project.where(active: true).order('position ASC')
 
     @techGroups = []
-    teches = Tech.all
+    teches = @resume.teches
     t_count = teches.size
     if t_count % 2 != 0
       @techGroups << teches[0, (t_count/2+1)]
@@ -32,7 +32,7 @@ class ResumesController < ApplicationController
     end
     
     @certGroups = []
-    certs = Certificate.all
+    certs = @resume.certificates
     c_count = certs.size
     if c_count % 2 != 0
       @certGroups << certs[0, (c_count/2+1)]
@@ -53,7 +53,7 @@ class ResumesController < ApplicationController
     @projects = Project.where(active: true).order('position ASC')
 
     @techGroups = []
-    teches = Tech.all
+    teches = @resume.teches
     t_count = teches.size
     if t_count % 2 != 0
       @techGroups << teches[0, (t_count/2+1)]
@@ -64,7 +64,7 @@ class ResumesController < ApplicationController
     end
     
     @certGroups = []
-    certs = Certificate.all
+    certs = @resume.certificates
     c_count = certs.size
     if c_count % 2 != 0
       @certGroups << certs[0, (c_count/2+1)]
@@ -104,10 +104,14 @@ class ResumesController < ApplicationController
     @app = JobApplication.find(@resume.job_application_id)
     @appCode = @app.gen_code
 
-    @projects = Project.where(active: true).order('position ASC')
+    #@projects = Project.where(active: true).order('position ASC')
+
+    @resume.save
+
+    @projects = @resume.projects
 
     @techGroups = []
-    teches = Tech.all
+    teches = @resume.teches
     t_count = teches.size
     if t_count % 2 != 0
       @techGroups << teches[0, (t_count/2+1)]
@@ -118,7 +122,7 @@ class ResumesController < ApplicationController
     end
     
     @certGroups = []
-    certs = Certificate.all
+    certs = @resume.certificates
     c_count = certs.size
     if c_count % 2 != 0
       @certGroups << certs[0, (c_count/2+1)]
@@ -128,8 +132,6 @@ class ResumesController < ApplicationController
       @certGroups << certs[(c_count/2), (c_count/2)]
     end
 
-    @resume.save
-    
     pdf = WickedPdf.new.pdf_from_string(
       render_to_string('home/print.html.erb', layout: 'resume.html.erb')
     ) 
@@ -157,34 +159,33 @@ class ResumesController < ApplicationController
 
     @appCode = @app.gen_code
 
-    @projects = Project.where(active: true).order('position ASC')
-
-    @techGroups = []
-    teches = Tech.all
-    t_count = teches.size
-    if t_count % 2 != 0
-      @techGroups << teches[0, (t_count/2+1)]
-      @techGroups << teches[(t_count/2+1), (t_count/2)]
-    else
-      @techGroups << teches[0, (t_count/2)]
-      @techGroups << teches[(t_count/2), (t_count/2)]
-    end
-    
-    @certGroups = []
-    certs = Certificate.all
-    c_count = certs.size
-    if c_count % 2 != 0
-      @certGroups << certs[0, (c_count/2+1)]
-      @certGroups << certs[(c_count/2+1), (c_count/2)]
-    else
-      @certGroups << certs[0, (c_count/2)]
-      @certGroups << certs[(c_count/2), (c_count/2)]
-    end
-
-    
+    #@projects = Project.where(active: true).order('position ASC')
 
     if @resume.update_attributes(resume_params)
-      flash[:notice] = "Successfully edited resume for #{@app.position_applied} at #{@app.company} ."
+
+      @projects = @resume.projects
+      
+      @techGroups = []
+      teches = @resume.teches
+      t_count = teches.size
+      if t_count % 2 != 0
+        @techGroups << teches[0, (t_count/2+1)]
+        @techGroups << teches[(t_count/2+1), (t_count/2)]
+      else
+        @techGroups << teches[0, (t_count/2)]
+        @techGroups << teches[(t_count/2), (t_count/2)]
+      end
+      
+      @certGroups = []
+      certs = @resume.certificates
+      c_count = certs.size
+      if c_count % 2 != 0
+        @certGroups << certs[0, (c_count/2+1)]
+        @certGroups << certs[(c_count/2+1), (c_count/2)]
+      else
+        @certGroups << certs[0, (c_count/2)]
+        @certGroups << certs[(c_count/2), (c_count/2)]
+      end
 
       pdf = WickedPdf.new.pdf_from_string(
         render_to_string('home/print.html.erb', layout: 'resume.html.erb')
@@ -192,6 +193,8 @@ class ResumesController < ApplicationController
       
       @resume.res_pdf.attach(io: StringIO.new(pdf), filename: "#{@user.first_name}#{@user.last_name}Resume.pdf", content_type: "application/pdf")
       
+      flash[:notice] = "Successfully edited resume for #{@app.position_applied} at #{@app.company} ."
+
       redirect_to(job_application_path(@app))
     else
       render('show')

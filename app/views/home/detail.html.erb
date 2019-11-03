@@ -22,15 +22,15 @@
                             <%= image_tag(@project.main_image, alt: @project.main_alt, class: "project-image") %>
                         <% end %>
                     </div>
-                    <div class="intro link-cont">
+                    <div class="link-cont">
                         <% if @project.publicUrl != "" %>
-                            <%= link_to('View', @project.publicUrl, class: "link", target: "_blank") %>
+                            <button class="res-button print"><%= link_to('View', @project.publicUrl, class: "link", target: "_blank") %></button>
                         <% end %>
                         <% if @project.adminUrl != "" %>
-                            <%= link_to('Admin Demo', @project.adminUrl, class: "link", target: "_blank") %>
+                            <button class="res-button print"><%= link_to('Admin Demo', @project.adminUrl, class: "link", target: "_blank") %></button>
                         <% end %>
                         <% if @project.gitUrl != "" %>
-                            <%= link_to('Github', @project.gitUrl, class: "link", target: "_blank") %>
+                            <button class="res-button print"><%= link_to('Github', @project.gitUrl, class: "link", target: "_blank") %></button>
                         <% end %>
                     </div>
                 </div>

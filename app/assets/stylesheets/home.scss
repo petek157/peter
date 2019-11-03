@@ -521,7 +521,7 @@ body {
 
     margin: auto;
     display: block;
-    padding-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 .project {
@@ -648,6 +648,7 @@ body {
 
     .project-image {
         cursor: pointer;
+        box-shadow: 2px 2px 2px 0px #000;
     }
 
     .mobileHyphen {

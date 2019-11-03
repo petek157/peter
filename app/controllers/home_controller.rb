@@ -12,6 +12,11 @@ class HomeController < ApplicationController
     #Tracking visitors
     if (params[:appid])#Used URL with an appliction code
       application = JobApplication.where(gen_code: params[:appid]).first
+
+      unless application.resume.nil?
+        @resume = application.resume
+      end
+
       if cookies[:pka_id].nil?
 
         p_cook = "{\"appid\": \"#{application.id}\", \"c_date\": \"#{(Time.now.to_i).to_s}\"}"
@@ -32,6 +37,13 @@ class HomeController < ApplicationController
         info = JSON.parse(Base64.decode64(cookies[:pka_id]))
 
         if JobApplication.exists?(info["appid"])
+
+          application = JobApplication.find(info["appid"])
+          
+          unless application.resume.nil?
+            @resume = application.resume
+          end
+
           Tracker.create(ip_address: request.remote_ip, job_application_id: info["appid"].to_i, cookie: cookies[:pka_id])
         else
           cookies.delete :pka_id
@@ -61,9 +73,33 @@ class HomeController < ApplicationController
                     outline_depth: 2}
         end
      end
+
      @projects = Project.where(active: true).order('position ASC')
      @des = "This is the resume that Im hoping will appropriately dispay my past projects, current abiities and willingness to learn in the future."
      @title = "Peter Koruga | Resume"
+
+      if (params[:appid])#Used URL with an appliction code
+        application = JobApplication.where(gen_code: params[:appid]).first
+
+        unless application.resume.nil?
+          @resume = application.resume
+        end
+
+      else
+     
+        unless cookies[:pka_id].nil?
+          info = JSON.parse(Base64.decode64(cookies[:pka_id]))
+
+          if JobApplication.exists?(info["appid"])
+            application = JobApplication.find(info["appid"])
+            unless application.resume.nil?
+              @resume = application.resume
+            end
+          end
+
+        end
+
+    end
   end
 
   def detail
@@ -75,6 +111,19 @@ class HomeController < ApplicationController
     end
     @des = "Here are a few of my, Peter Koruga's, projects that are visible to the outside world. Some of the tech includes: HTML, CSS, Javascript, React, Rails, iOS and Python."
     @title = "Peter Koruga | Projects"
+
+    unless cookies[:pka_id].nil?
+      info = JSON.parse(Base64.decode64(cookies[:pka_id]))
+
+      if JobApplication.exists?(info["appid"])
+        application = JobApplication.find(info["appid"])
+        unless application.resume.nil?
+          @resume = application.resume
+        end
+      end
+
+    end
+    
   end
 
   def contact

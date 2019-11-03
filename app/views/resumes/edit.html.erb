@@ -20,18 +20,14 @@
 
             <!--Select Tech items to include in the resume-->
             <div class="form-tech form-item">
-                <%= f.collection_check_boxes( :tech_ids, Tech.all, :id, :name, class: ["form-input", "form-description"]) do |b|
-                    b.label(class: "check_box") { b.check_box(checked: true, class: "add_margin") + b.text }
-                end %>
+                <%= f.collection_check_boxes( :tech_ids, Tech.all, :id, :name, class: ["form-input", "form-description"])%>
             </div>
 
             <%= content_tag(:div, f.text_field(:cert_desc, class: ["form-input", "form-position"], placeholder: "Certificate section description"), class: "form-item") %>
 
             <!--Select Certificates to include in the resume-->
             <div class="form-tech form-item">
-                <%= f.collection_check_boxes( :certificate_ids, Certificate.all, :id, :title, class: ["form-input", "form-description"]) do |b|
-                    b.label(class: "check_box") { b.check_box(checked: true, class: "add_margin") + b.text }
-                end %>
+                <%= f.collection_check_boxes( :certificate_ids, Certificate.all, :id, :title, class: ["form-input", "form-description"]) %>
             </div>
 
             <div class="form-buttons">

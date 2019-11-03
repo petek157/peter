@@ -26,7 +26,15 @@
     </div>
     <div class="cat-items">
         <div class="cat-item">
-            <div class="intro">HTML, CSS, Javascript, JQuery, Swift, Objective-C, PHP, Ruby, Rails, React, C++ (Wiring), Python, SQL, AWS</div>
+            <div class="intro">
+                <% if @resume %>
+                    <% @resume.teches.each do |t| %>
+                        <%= t.name %>
+                    <% end %>
+                <% else %>
+                    HTML, CSS, Javascript, JQuery, Swift, Objective-C, PHP, Ruby, Rails, React, C++ (Wiring), Python, SQL, AWS
+                <% end %>
+            </div>
         </div>
     </div>
 
@@ -35,7 +43,15 @@
     </div>
     <div class="cat-items">
         <div class="cat-item">
-            <div class="intro">Learning React.js, Accounting Foundations: Bookkeeping, Learning Video Production and Editing, Finance Essentials for Small Business, Accounting Foundations, Bootstrap 3 Essential Training, jQuery Essential Training, Validating and Processing Forms with Javascript and PHP, InDesign CS5: Print Production Guidelines, Swift Essential Training, Distributing iOS Applications Through the App Store, Learning Python, SQL Essential Training</div>
+            <div class="intro">
+                <% if @resume %>
+                    <% @resume.certificates.each do |c| %>
+                        <%= c.title %>
+                    <% end %>
+                <% else %>
+                    Learning React.js, Accounting Foundations: Bookkeeping, Learning Video Production and Editing, Finance Essentials for Small Business, Accounting Foundations, Bootstrap 3 Essential Training, jQuery Essential Training, Validating and Processing Forms with Javascript and PHP, InDesign CS5: Print Production Guidelines, Swift Essential Training, Distributing iOS Applications Through the App Store, Learning Python, SQL Essential Training
+                <% end %>
+            </div>
         </div>
     </div>
 
