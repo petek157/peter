@@ -11,7 +11,7 @@ $(document).on("turbolinks:load", function() {
             info: 'The opportunity to make things for a living is what I have been preparing to do for the last 10 years.  Very few things bring me more joy than finding a need or reason to start and complete a project. Being wired to constantly want to improve by reading, watching, listening or mentored guidence allows me to be versatile to any team. Logic and common sense are my north star.'
         }
     ]
-
+    
     var slideTimer = null;
     clearInterval(slideTimer);
     var current = 0;
@@ -20,8 +20,13 @@ $(document).on("turbolinks:load", function() {
     
     function slide(c) {
         $(".headline").fadeOut( "slow", function() {
+            console.log(c);
+            if (c != 0 && c != 1) {
+                c = 0
+            }
             $(".headline-title").html(indexInfo[c].title);
             $(".headline-info").html(indexInfo[c].info);
+            
             if (c == 0) {
                 $(".c1").css("color", "#FFE373");
                 $(".c2").css("color", "white");
