@@ -188,7 +188,8 @@ class ResumesController < ApplicationController
       end
 
       pdf = WickedPdf.new.pdf_from_string(
-        render_to_string('home/print.html.erb', layout: 'resume.html.erb')
+        render_to_string('home/print.html.erb', layout: 'resume.html.erb'),
+        lowquality: true
       ) 
       
       @resume.res_pdf.attach(io: StringIO.new(pdf), filename: "#{@user.first_name}#{@user.last_name}Resume.pdf", content_type: "application/pdf")
