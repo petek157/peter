@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_02_010704) do
+ActiveRecord::Schema.define(version: 2019_11_05_183030) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -84,11 +84,11 @@ ActiveRecord::Schema.define(version: 2019_11_02_010704) do
   end
 
   create_table "resumes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
-    t.string "title"
-    t.string "edu_desc"
-    t.string "cert_desc"
-    t.string "tech_desc"
-    t.string "expir_desc"
+    t.text "title"
+    t.text "edu_desc"
+    t.text "cert_desc"
+    t.text "tech_desc"
+    t.text "expir_desc"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "job_application_id"
@@ -109,13 +109,11 @@ ActiveRecord::Schema.define(version: 2019_11_02_010704) do
 
   create_table "trackers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
     t.string "ip_address"
-    t.integer "application_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "cookie"
     t.integer "job_application_id"
     t.boolean "url_clicked", default: false
-    t.index ["application_id"], name: "index_trackers_on_application_id"
     t.index ["job_application_id"], name: "index_trackers_on_job_application_id"
   end
 
