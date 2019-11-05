@@ -51,7 +51,10 @@ $orange: #FD5E53;
 }
 
 .other-d {
-    width: 100%;
+    width: 80%;
+    ul {
+        padding-left: 0px;
+    }
 }
 
 tr {
@@ -116,5 +119,6 @@ hr {
 }
 
 .list-d {
-    padding-left: 10px;
+    padding-left: 12px;
 }
+

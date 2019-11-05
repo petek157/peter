@@ -39,7 +39,8 @@
         </div>
     </div>
 
-    <div class="hd">Certificates from Lynda.com and LinkedIn</div>
+    <% if @resume.certificate_ids.size > 0 %>
+        <div class="hd">Certificates from Lynda.com and LinkedIn</div>
         <div class='cat-d'>
             <div class="i-d"><%= @resume.cert_desc%></div>
             <div class="resumer-container-d">
@@ -62,7 +63,7 @@
                 </div>
             </div>
         </div>
-
+    <% end %>
     <div class="hd">Education</div>
         <div class='cat-d'>
             <div class="i-d"><%= @resume.edu_desc%></div>

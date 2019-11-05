@@ -166,15 +166,33 @@ class ResumesController < ApplicationController
       @projects = @resume.projects
       
       @techGroups = []
+      tech0 = []
+      tech1 = []
+      tech2 = []
+
       teches = @resume.teches
-      t_count = teches.size
-      if t_count % 2 != 0
-        @techGroups << teches[0, (t_count/2+1)]
-        @techGroups << teches[(t_count/2+1), (t_count/2)]
-      else
-        @techGroups << teches[0, (t_count/2)]
-        @techGroups << teches[(t_count/2), (t_count/2)]
+
+      teches.each do |t|
+        if tech0.size == 0 || tech0.size == tech2.size
+          tech0 << t
+        elsif tech0.size > tech1.size
+          tech1 << t
+        elsif tech1.size > tech2.size
+          tech2 << t
+        end
       end
+
+      @techGroups << tech0
+      @techGroups << tech1
+      @techGroups << tech2
+      # t_count = teches.size
+      # if t_count % 2 != 0
+      #   @techGroups << teches[0, (t_count/2+1)]
+      #   @techGroups << teches[(t_count/2+1), (t_count/2)]
+      # else
+      #   @techGroups << teches[0, (t_count/2)]
+      #   @techGroups << teches[(t_count/2), (t_count/2)]
+      # end
       
       @certGroups = []
       certs = @resume.certificates
