@@ -16,14 +16,20 @@
     </div>
     <div class="project-list">
         <div class="admin-menu-title">Applications</div>
-        <%= content_tag(:div, link_to("+ New Application", new_job_application_path()), class: "project-title") %>
+        <%= content_tag(:div, link_to("+ New Application", new_job_application_path(), class: "new-application"), class: "new-application-box") %>
  
         <% @allapps.each do |app| %>
-            <% if app.id == @app.id%>
-                <div class='project-title selected'><%= link_to("#{app.company} - #{app.position_applied} - #{app.trackers.size}", job_application_path(app.id)) %></div>
-            <% else %>
-                <div class='project-title'><%= link_to("#{app.company} - #{app.position_applied} - #{app.trackers.size}", job_application_path(app.id)) %></div>
-            <% end %>
+            <% puts "*************"%>
+            <% puts app.response == nil || app.response == "" ? "NIL" : "Not" %>
+            <% status = app.response == nil || app.response == "" ? "no-response" : "responded" %>
+
+            <div class="project-title <%= app.id == @app.id ? "selected" : ""%> ">
+                <a href=<%= job_application_path(app.id) %> class=<%= status %>>
+                    <%= app.company %><br />
+                    <%= app.position_applied %>
+                </a>
+            </div>
+
         <% end %>
         
         <div class="admin-menu-title">None Click Trackers</div>
